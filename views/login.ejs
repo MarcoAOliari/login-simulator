@@ -1,0 +1,37 @@
+<%- include("partials/header") %> 
+
+<section id="home">
+    <div class="container">
+        <div class="row align-items-center justify-content-center h-100">
+            <div class="col-md-6 text-center">
+                <img class="first-image" src="https://image.flaticon.com/icons/svg/2864/2864725.svg">
+                <h1 style="padding-top: 5%">Bem-vindo ao Login Simulator!</h1>
+            </div>
+            <div class="col-md-6">
+                <div class="card text-center">
+                    <div class="card-body">
+                        <img src="https://image.flaticon.com/icons/svg/476/476863.svg">
+                        <hr>
+                        <form class="login-form" action="/login" method="POST">
+                            <div class="form-group">
+                                <label>Usuário</label>
+                                <input type="text" name="username" placeholder="usuário">
+                            </div>
+                            <div class="form-group">
+                                <input type="password" name="password" placeholder="senha">
+                            </div>
+                            <div class="form-group">
+                                <button type="submit">Login</button>
+                            </div>
+                        </form>
+                        <a href="/register">Registre-se aqui!</a>
+                    </div>  
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    
+
+
+<%- include("partials/footer") %> 

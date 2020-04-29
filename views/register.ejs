@@ -1,0 +1,16 @@
+<%- include("partials/header") %> 
+
+<form action="/register/new" method="POST">
+    <% if(error){ %>
+        <h4><%= error %> </h4>
+    <% } %>  
+    <input type="text" name="firstName" placeholder="nome">
+    <input type="text" name="surname" placeholder="sobrenome">
+    <input type="date" name="birth" placeholder="data de nascimento">
+    <input type="text" name="username" placeholder="usuário">
+    <input type="password" name="password" placeholder="senha">
+    <input type="password" name="repeatedPassword" placeholder="repita a senha">
+    <button type="submit">Cadastrar</button>
+</form>
+
+<%- include("partials/footer") %> 

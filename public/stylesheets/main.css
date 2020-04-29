@@ -1,0 +1,25 @@
+body {
+    background-color: rgb(111, 163, 223);
+}
+
+#home .container{
+    height: 100vh;
+    background-color: aliceblue;
+}
+
+#home .form-group {
+    justify-content: center;
+    display: flex;
+}
+
+#home .form-group input {
+    width: 80%;
+}
+
+.card img {
+    max-width: 100px
+}
+
+.first-image {
+    max-width: 300px;
+}
