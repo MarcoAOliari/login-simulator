@@ -1,0 +1,25 @@
+body {
+    background-color: aliceblue;
+}
+
+.register-form {
+    height: 100vh;
+}
+
+.login-form {
+    height: 60%;
+    width: 60%;
+    border-radius: 50px;
+    background-color: rgb(111, 163, 223);
+    min-height: 560px;
+}
+
+.login-form h2 {
+    font: white;
+}
+
+.login-form input {
+    width: 85%;
+    line-height: 30px;
+    margin-bottom: 5px;
+}

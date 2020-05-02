@@ -1,37 +1,39 @@
-<%- include("partials/header") %> 
+<%- include("partials/header") %>
+
+<head>
+    <link href="/stylesheets/login.css" rel="stylesheet" type="text/css">
+</head>
 
 <section id="home">
-    <div class="container">
-        <div class="row align-items-center justify-content-center h-100">
-            <div class="col-md-6 text-center">
-                <img class="first-image" src="https://image.flaticon.com/icons/svg/2864/2864725.svg">
-                <h1 style="padding-top: 5%">Bem-vindo ao Login Simulator!</h1>
-            </div>
-            <div class="col-md-6">
-                <div class="card text-center">
-                    <div class="card-body">
-                        <img src="https://image.flaticon.com/icons/svg/476/476863.svg">
-                        <hr>
-                        <form class="login-form" action="/login" method="POST">
-                            <div class="form-group">
-                                <label>Usuário</label>
-                                <input type="text" name="username" placeholder="usuário">
-                            </div>
-                            <div class="form-group">
-                                <input type="password" name="password" placeholder="senha">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit">Login</button>
-                            </div>
-                        </form>
-                        <a href="/register">Registre-se aqui!</a>
-                    </div>  
-                </div>
+    <div class="row">
+        <div class="col-md-6 left d-flex align-items-center justify-content-center">
+            <div>
+                <img class="mx-auto d-block" src="https://image.flaticon.com/icons/svg/2864/2864725.svg">
+                <h1 class="text-center my-5">Bem-vindo ao Login Simulator!</h1>
+                <p>Ainda é um projeto teste, só fiz o login e o registro por enquanto. As senhas estão criptografadas, logo não tenho acesso às que vocês colocarem.</p>
+                <p class="pb-5">O design nunca foi meu forte, mas se encontrarem erros ou tiverem boas ideias para enfeitar o sistema, estou aberto a sugestões.</p>
+                <h2 class="text-center">Bom Login! :)</h2>
+            </div>   
+        </div>
+        <div class="col-md-6 right d-flex align-items-center">
+            <div class="w-100 text-center">
+                <img src="https://image.flaticon.com/icons/svg/476/476863.svg">
+                <hr>
+                <form class="login-form" action="/login" method="POST">
+                    <div class="form-group">
+                        <input type="text" name="username" placeholder="usuário">
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="password" placeholder="senha">
+                    </div>
+                    <div class="form-group py-3">
+                        <button class="btn btn-large btn-primary" type="submit">Login</button>
+                    </div>
+                </form>
+                <a href="/register">Registre-se aqui!</a> 
             </div>
         </div>
     </div>
 </section>
-    
-
 
 <%- include("partials/footer") %> 
