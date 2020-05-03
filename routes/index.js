@@ -46,18 +46,18 @@ router.post("/register/new", function(req, res){
 
     if(req.body.password !== req.body.repeatedPassword){
         req.flash("error", "Senhas diferentes");
-        return res.redirect("/register");
+        return res.redirect("/");
     }
 
     User.register(newUser, req.body.password, function(err, user){
         if(err){
             if(err.name === "UserExistsError"){
                 req.flash("error", "Usuário já existe!");
-                return res.redirect("/register");
+                return res.redirect("/");
             }
         } else {
             passport.authenticate("local")(req, res, function(){
-                res.redirect("/register");
+                res.redirect("/");
             });
         }
     });

@@ -9,7 +9,13 @@ var userSchema = new mongoose.Schema({
         min: '1910-01-01'
     },
     username: String,
-    password: String
+    password: String,
+    posts: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Post"
+        }
+    ]
 });
 
 userSchema.plugin(passportLocalMongoose);

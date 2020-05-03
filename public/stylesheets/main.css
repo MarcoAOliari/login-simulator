@@ -1,0 +1,13 @@
+@import url('https://fonts.googleapis.com/css?family=Quicksand&display=swap');
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+nav {
+    background-color: rgb(111, 163, 223);
+    color: aliceblue;
+}
+
+.navbar-brand img {
+    width: 50px;
+}

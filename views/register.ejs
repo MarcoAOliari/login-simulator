@@ -7,35 +7,41 @@
 <section id="register">
     <div class="container">
         <div class="row d-flex flex-column justify-content-center align-items-center register-form">
-            <div class="login-form text-center">
-                <form action="/register/new" method="POST">
-                    <% if(error){ %>
-                        <h4><%= error %> </h4>
-                    <% } %>
-                    <h2 class="py-3">CRIAR NOVA CONTA</h2>
-                    <div class="form-group">
-                        <input type="text" name="firstName" placeholder="nome">
-                    </div>  
-                    <div class="form-group">
-                        <input type="text" name="surname" placeholder="sobrenome">
-                    </div>
-                    <div class="form-group">
-                        <input type="date" name="birth">   
-                    </div>
-                    <div class="form-group">
-                        <input type="email" name="email" placeholder="email">   
-                    </div>
-                    <div class="form-group">
-                        <input type="text" name="username" placeholder="usuário">   
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="password" placeholder="senha">   
-                    </div>
-                    <div class="form-group">
-                        <input type="password" name="repeatedPassword" placeholder="repita a senha">
-                    </div>
-                    <button type="submit">Cadastrar</button>
-                </form>
+            <div class="card">
+                <div class="card-header">
+                    <h2 class="pt-3 mx-5">CRIAR NOVA CONTA</h2>
+                </div>
+                <div class="text-center">
+                    <form action="/register/new" method="POST" class="pt-4">
+                        <% if(error){ %>
+                            <h4><%= error %> </h4>
+                        <% } %>
+                        <div class="form-group">
+                            <input type="text" name="firstName" placeholder="nome">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="surname" placeholder="sobrenome">
+                        </div>     
+                        <div class="form-group">
+                            <input type="email" name="email" placeholder="email">   
+                        </div>
+                        <div class="form-group">
+                            <input type="date" name="birth" value="data de nascimento">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="username" placeholder="usuário"> 
+                        </div>   
+                        <div class="form-group">
+                            <input type="password" name="password" placeholder="senha">   
+                        </div>
+                        <div class="form-group pb-4">
+                            <input type="password" name="repeatedPassword" placeholder="repita a senha">
+                        </div>
+                        <div class="form-group pb-4">
+                            <button class="btn btn-primary" type="submit">Cadastrar</button>
+                        </div>
+                    </form>
+                </div>
             </div> 
         </div>  
     </div>

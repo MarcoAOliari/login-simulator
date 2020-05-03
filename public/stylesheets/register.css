@@ -6,20 +6,24 @@ body {
     height: 100vh;
 }
 
-.login-form {
-    height: 60%;
-    width: 60%;
-    border-radius: 50px;
+.card {
+    box-shadow: 0 4px 8px 0 rgb(18, 102, 197), 0 6px 20px 0 rgb(18, 102, 197);
+}
+
+.card-header {
+    font-weight: bold;
+    background-color: rgb(18, 102, 197);
+}
+
+.card {
     background-color: rgb(111, 163, 223);
-    min-height: 560px;
 }
 
-.login-form h2 {
-    font: white;
-}
-
-.login-form input {
-    width: 85%;
-    line-height: 30px;
-    margin-bottom: 5px;
+.register-form input {
+    background: aliceblue;
+    line-height: 40px;
+    padding-left: 15px;
+    border: 0;
+    border-radius: 3px;
+    width: 80%;
 }
