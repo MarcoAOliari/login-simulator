@@ -18,11 +18,11 @@ router.post("/login", passport.authenticate("local",
     {
         failureRedirect: "/"
     }), function(req, res){
-        res.redirect("/profile/posts/" + req.user._id)
+        res.redirect("/profile/" + req.user._id + "/posts")
 });
 
 //Pagina inicial de perfil
-router.get("/profile/posts/:id", function(req, res){
+router.get("/profile/:id/posts", function(req, res){
     User.findById(req.params.id).populate("posts").exec(function(err, user){
         if(err){
             console.log(err)
@@ -46,6 +46,7 @@ router.post("/register/new", function(req, res){
     let newUser = new User({
         firstName: req.body.firstName,
         surname: req.body.surname,
+        _id: req.body.username,
         username: req.body.username,
         birth: req.body.birth
     });

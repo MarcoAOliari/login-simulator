@@ -11,7 +11,7 @@ let postRoutes = require("./routes/posts");
 
 let app = express();
 
-mongoose.connect("mongodb://localhost/ideia", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false});
+mongoose.connect("mongodb://localhost/ideia", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true});
 
 app.set("view engine", "ejs");
 
