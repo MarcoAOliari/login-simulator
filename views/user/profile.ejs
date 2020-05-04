@@ -75,7 +75,6 @@
 
                 <div class="navbar-header">
                     <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                        <!-- <i class="glyphicon glyphicon-align-left"></i> -->
                         <img style="width: 35px" src="https://image.flaticon.com/icons/svg/2864/2864725.svg">
                         <span>Imagem usuário + nome</span>
                     </button>
@@ -114,9 +113,24 @@
         
         <div class="line"></div>
 
-        <h1>Olá <%= currentUser.firstName %> </h1>
-    </div>
+        <% pageUser.posts.forEach(function(post){ %>
 
+            <h2><%= post.title %></h2>
+            <p><%= post.text %></p>
+            <div class="line"></div>
+
+        <% }) %> 
+
+        <h1>Olá <%= currentUser.firstName %> </h1>
+
+        <form action="/profile/<%= pageUser.id %>/posts/new" method="POST">
+            <input type="text" name="post[title]" placeholder="Um título">
+            <input type="text" name="post[text]" placeholder="Aqui vem seu post">
+            <button type="submit">Teste</button>
+        </form>
+        
+    </div>
 </div>
+
 
 <%- include("../partials/footer") %> 

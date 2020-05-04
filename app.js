@@ -7,6 +7,7 @@ const express       = require("express"),
 
 var User = require("./models/user");
 let userRoutes = require("./routes/index");
+let postRoutes = require("./routes/posts");
 
 let app = express();
 
@@ -36,5 +37,6 @@ passport.serializeUser(User.serializeUser());
 passport.deserializeUser(User.deserializeUser());
 
 app.use(userRoutes);
+app.use(postRoutes);
 
 app.listen(3000);

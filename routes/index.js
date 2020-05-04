@@ -16,14 +16,20 @@ router.get("/", function(req, res){
 //Realiza o login
 router.post("/login", passport.authenticate("local",
     {
-        successRedirect: "/profile",
-        failureRedirect: "/",
+        failureRedirect: "/"
     }), function(req, res){
+        res.redirect("/profile/posts/" + req.user._id)
 });
 
 //Pagina inicial de perfil
-router.get("/profile", function(req, res){
-    res.render("user/welcome");
+router.get("/profile/posts/:id", function(req, res){
+    User.findById(req.params.id).populate("posts").exec(function(err, user){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("user/profile", {pageUser: user});
+        }
+    })
 })
 
 /*
