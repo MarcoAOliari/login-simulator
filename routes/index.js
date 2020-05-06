@@ -70,4 +70,24 @@ router.post("/register/new", function(req, res){
     });
 });
 
+/*
+EDITA PERFIL
+*/
+
+//Exibe form de edição
+router.get("/profile/:id/edit", function(req, res){
+    res.render("user/edit"); 
+})
+
+//Edita usuário
+router.put("/profile/:id/edit", function(req, res){
+    User.findByIdAndUpdate(req.user.id, req.body.user, function(err, user){
+        if(err){
+            console.log(err)
+        } else {
+            res.redirect("/profile/" + user.id + "/posts")
+        }
+    })
+})
+
 module.exports = router;

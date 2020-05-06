@@ -1,0 +1,7 @@
+<form action="/profile/<%= currentUser.id %>/edit?_method=PUT" method="POST">
+    <input type="text" value="<%= currentUser.firstName %>" name="user[firstName]">
+    <input type="text" value="<%= currentUser.surname %>" name="user[surname]">
+    <input type="text" value="<%= currentUser.username %>" name="user[username]">
+
+    <button type="submit">EDITAR</button>
+</form
