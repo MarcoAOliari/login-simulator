@@ -51,8 +51,7 @@ router.post("/profile/:user_id/posts/:post_id/like", function(req, res){
                     post.likes.push(user)
                     user.save()
                     post.save()
-                    console.log(post.likes.length)
-                    res.redirect("/profile/" + req.params.user_id + "/posts")
+                    res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
                 }
             })
         }

@@ -4,58 +4,49 @@
     <link href="/stylesheets/user/profile.css" rel="stylesheet" type="text/css">
 </head>
 
-<%- include("../partials/sidebar") %> 
+<%- include("../partials/sidebar") %>
 
+<h1>Olá <%= currentUser.firstName %> </h1>
 
-        <h2>Collapsible Sidebar Using Bootstrap 3</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<form action="/profile/<%= pageUser.id %>/posts/new" method="POST">
+    <input type="text" name="post[title]" placeholder="Um título"><br>
+    <textarea name="post[text]" cols="30" rows="10" placeholder="Aqui vem seu post"></textarea>
+    <!-- <input type="text" name="post[text]" placeholder="Aqui vem seu post"> -->
+    <button type="submit">Teste</button>
+</form>
 
-        <div class="line"></div>
+<div class="line"></div>
 
-        <h2>Lorem Ipsum Dolor</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<% pageUser.posts.forEach(function(post){ %>
 
-        <div class="line"></div>
+    <h2><%= post.title %></h2>
+    <p><%= post.text %></p>
 
-        <h2>Lorem Ipsum Dolor</h2>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>"><button>VER POST</button></a>
 
-        <div class="line"></div>
+    <div class="line"></div>
 
-        <h3>Lorem Ipsum Dolor</h3>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-        
-        <div class="line"></div>
+<% }) %> 
 
-        <% pageUser.posts.forEach(function(post){ %>
+<h2>Collapsible Sidebar Using Bootstrap 3</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-            <h2><%= post.title %></h2>
-            <p><%= post.text %></p>
+<div class="line"></div>
 
-            <form action="/profile/<%= pageUser.id %>/posts/<%= post._id %>/like" method="POST">
-                <button type="submit">LIKE</button>
-            </form>
+<h2>Lorem Ipsum Dolor</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-            <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>/edit"><button>EDIT</button></a>
-            <h4>Likes: <%= post.likes.length %> </h4>
+<div class="line"></div>
 
-            <form action="/profile/<%= pageUser.id %>/posts/<%= post._id %>?_method=DELETE" method="POST">
-                <button type="submit">DELETAR</button>
-            </form>
+<h2>Lorem Ipsum Dolor</h2>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-            <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>"><button></button></a>
+<div class="line"></div>
 
-            <div class="line"></div>
+<h3>Lorem Ipsum Dolor</h3>
+<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-        <% }) %> 
-
-        <h1>Olá <%= currentUser.firstName %> </h1>
-
-        <form action="/profile/<%= pageUser.id %>/posts/new" method="POST">
-            <input type="text" name="post[title]" placeholder="Um título">
-            <input type="text" name="post[text]" placeholder="Aqui vem seu post">
-            <button type="submit">Teste</button>
-        </form>
+<div class="line"></div>
 
 <%- include("../partials/footer") %> 
