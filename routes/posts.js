@@ -19,9 +19,20 @@ router.post("/profile/:id/posts/new", function(req, res){
                     post.save()
                     user.posts.push(post)
                     user.save()
-                    res.redirect("/profile/posts/" + req.params.id)
+                    res.redirect("/profile/" + req.params.id + "/posts")
                 }
             })
+        }
+    })
+})
+
+//MOSTRA POST COM COMENTÁRIOS
+router.get("/profile/:user_id/posts/:post_id", function(req, res){
+    Post.findById(req.params.post_id, function(err, post){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("posts/show", {post: post, pageUser: req.params.user_id})
         }
     })
 })
@@ -40,9 +51,43 @@ router.post("/profile/:user_id/posts/:post_id/like", function(req, res){
                     post.likes.push(user)
                     user.save()
                     post.save()
+                    console.log(post.likes.length)
                     res.redirect("/profile/" + req.params.user_id + "/posts")
                 }
             })
+        }
+    })
+})
+
+//EXIBE FORMULÁRIO PARA EDITAR POST
+router.get("/profile/:user_id/posts/:post_id/edit", function(req, res){
+    Post.findById(req.params.post_id, function(err, post){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("posts/edit", {post: post, pageUser: req.params.user_id})
+        }
+    })
+})
+
+//EDITA POST
+router.put("/profile/:user_id/posts/:post_id/edit", function(req, res){
+    Post.findByIdAndUpdate(req.params.post_id, req.body.post, function(err, post){
+        if(err){
+            console.log(err)
+        } else {
+            res.redirect("/profile/" + req.params.user_id + "/posts")
+        }
+    })
+})
+
+//DELETA POST
+router.delete("/profile/:user_id/posts/:post_id", function(req, res){
+    Post.findByIdAndRemove(req.params.post_id, function(err){
+        if(err){
+            console.log(err)
+        } else {
+            res.redirect("/profile/" + req.params.user_id + "/posts")
         }
     })
 })
