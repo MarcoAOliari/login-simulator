@@ -41,6 +41,8 @@ passport.deserializeUser(User.deserializeUser());
 app.use(userRoutes);
 app.use(postRoutes);
 
-app.listen(process.env.PORT, process.env.IP, function(){
-	console.log("Server online")
-})
+app.listen(3000)
+
+// app.listen(process.env.PORT, process.env.IP, function(){
+// 	console.log("Server online")
+// })
