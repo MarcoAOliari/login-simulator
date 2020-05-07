@@ -9,11 +9,11 @@ const express        = require("express"),
 var User = require("./models/user");
 let userRoutes = require("./routes/index");
 let postRoutes = require("./routes/posts");
+require('dotenv').config();
 
 let app = express();
 
-//mongoose.connect("mongodb://localhost/ideia", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true});
-mongoose.connect("mongodb+srv://admin:123@heroku-test-mz7b4.mongodb.net/test?retryWrites=true&w=majority", {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true})
+mongoose.connect(process.env.DB_URL, {useNewUrlParser: true, useUnifiedTopology: true, useFindAndModify: false, useCreateIndex: true})
 
 app.set("view engine", "ejs");
 
