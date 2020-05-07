@@ -46,13 +46,13 @@ router.post("/register/new", function(req, res){
     let newUser = new User({
         firstName: req.body.firstName,
         surname: req.body.surname,
+        email: req.body.email,
         _id: req.body.username,
         username: req.body.username,
         birth: req.body.birth
     });
 
     if(req.body.password !== req.body.repeatedPassword){
-        req.flash("error", "Senhas diferentes");
         return res.redirect("/");
     }
 
