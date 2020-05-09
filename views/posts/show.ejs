@@ -23,4 +23,16 @@
     <button type="submit">DELETAR</button>
 </form>
 
+<form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/new" method="POST">
+    <textarea type="text" name="comment[text]" placeholder="Comente!"></textarea>
+    <button type="submit">Comentar</button>
+</form>
+
+<h1>Comentários</h1>
+
+<% post.comments.forEach(function(comment){ %>
+    <h3>Comentário por <%= comment.author.username %> </h3>
+    <p><%= comment.text %> </p>
+<% }) %> 
+
 <%- include("../partials/footer") %> 

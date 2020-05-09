@@ -28,7 +28,7 @@ router.post("/profile/:id/posts/new", function(req, res){
 
 //MOSTRA POST COM COMENTÁRIOS
 router.get("/profile/:user_id/posts/:post_id", function(req, res){
-    Post.findById(req.params.post_id, function(err, post){
+    Post.findById(req.params.post_id).populate("comments").exec(function(err, post){
         if(err){
             console.log(err)
         } else {
