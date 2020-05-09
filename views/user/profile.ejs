@@ -9,8 +9,8 @@
 <h1>Olá <%= currentUser.firstName %> </h1>
 
 <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
-    <input type="text" name="post[title]" placeholder="Um título"><br>
-    <textarea name="post[text]" cols="30" rows="10" placeholder="Aqui vem seu post"></textarea>
+    <input class="my-3" type="text" name="post[title]" placeholder="Um título"><br>
+    <textarea name="post[text]" placeholder="Aqui vem seu post"></textarea>
     <button type="submit">Teste</button>
 </form>
 

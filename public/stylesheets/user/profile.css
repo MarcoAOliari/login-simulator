@@ -251,10 +251,23 @@ a.article, a.article:hover {
     }
 }
 
+#newPost {
+    border: 3px solid rgb(78, 115, 148);
+    border-radius: 30px
+}
+
 #newPost input {
     width: 100%;
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid rgb(78, 115, 148);
+    padding-left: 15px;
+    padding-bottom: 10px; 
 }
 
 #newPost textarea {
     width: 100%;
+    background: transparent;
+    border: 0;
+    resize: none;
 }
