@@ -11,3 +11,12 @@ nav {
 .navbar-brand img {
     width: 50px;
 }
+
+.verify {
+    display: none;
+}
+
+.error {
+    color: red;
+    display: block;
+}

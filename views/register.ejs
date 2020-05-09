@@ -12,26 +12,42 @@
                     <h2 class="pt-3 mx-5">CRIAR NOVA CONTA</h2>
                 </div>
                 <div class="text-center">
-                    <form action="/register/new" method="POST" class="pt-4">
+                    <form onsubmit="return registerValidation()" action="/register/new" method="POST" class="pt-4">
                         <div class="form-group">
-                            <input type="text" name="firstName" placeholder="nome">
+                            <input id="firstName" type="text" name="firstName" placeholder="nome">
                         </div>
+
+                        <span class="verify" id="firstNameError"><p>Escreva seu nome</p></span>
+
                         <div class="form-group">
-                            <input type="text" name="surname" placeholder="sobrenome">
-                        </div>     
+                            <input id="surname" type="text" name="surname" placeholder="sobrenome">
+                        </div>  
+                        
+                        <span class="verify" id="surnameError"><p>Escreva seu sobrenome</p></span>
+
                         <div class="form-group">
-                            <input type="email" name="email" placeholder="email">   
+                            <input id="email" type="text" name="email" placeholder="email">   
                         </div>
+
+                        <span class="verify" id="emailError"><p>Forneça um email válido</p></span>
+
                         <div class="form-group">
-                            <input type="text" name="username" placeholder="usuário"> 
+                            <input id="username" type="text" name="username" placeholder="usuário"> 
                         </div>   
+
+                        <span class="verify" id="userError"><p>Forneça seu nome de usuário</p></span>
+
                         <div class="form-group">
-                            <input type="password" name="password" placeholder="senha">   
+                            <input id="password" type="password" name="password" placeholder="senha">   
                         </div>
-                        <div class="form-group pb-4">
-                            <input type="password" name="repeatedPassword" placeholder="repita a senha">
+
+                        <div class="form-group">
+                            <input id="repeatedPassword" type="password" name="repeatedPassword" placeholder="repita a senha">
                         </div>
-                        <div class="form-group pb-4">
+
+                        <span class="verify" id="passwordError"></span>
+
+                        <div class="form-group py-4">
                             <button class="btn btn-primary" type="submit">Cadastrar</button>
                         </div>
                     </form>
@@ -41,7 +57,67 @@
     </div>
 
     <script>
-        
+        function registerValidation() {
+            let firstName = document.getElementById("firstName");
+            let surname = document.getElementById("surname");
+            let email = document.getElementById("email");
+            let username = document.getElementById("username");
+            let password = document.getElementById("password");
+            let repeatedPassword = document.getElementById("repeatedPassword");
+
+            let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/
+
+            function nowIsOk(objClassList) {
+                objClassList.remove("error")
+                objClassList.add("verify")
+            }
+
+            if (firstName.value === "") {
+                event.preventDefault();
+                document.getElementById("firstNameError").classList.add("error")
+            } else {
+                nowIsOk(document.getElementById("firstNameError").classList)
+            }
+
+            if (surname.value === "") {
+                event.preventDefault();
+                document.getElementById("surnameError").classList.add("error")
+            } else {
+                nowIsOk(document.getElementById("surnameError").classList)
+            }
+
+            if (email.value === "" || !email.value.match(mailFormat)) {
+                event.preventDefault();
+                document.getElementById("emailError").classList.add("error")
+            } else {
+                nowIsOk(document.getElementById("emailError").classList)
+            }
+
+            if (username.value === "") {
+                event.preventDefault();
+                document.getElementById("userError").classList.add("error")
+            } else {
+                nowIsOk(document.getElementById("userError").classList)
+            }
+
+            if (password.value !== repeatedPassword.value) {
+                event.preventDefault();
+                document.getElementById("passwordError").innerHTML = "<p>Senhas distintas</p>"
+                document.getElementById("passwordError").classList.add("error")
+                return;
+            } else {
+                nowIsOk(document.getElementById("passwordError").classList)
+            }
+            
+            if (password.value === "" || repeatedPassword.value === "") {
+                event.preventDefault();
+                document.getElementById("passwordError").innerHTML = "<p>Escolha uma senha</p>"
+                document.getElementById("passwordError").classList.add("error")
+            } else {
+                nowIsOk(document.getElementById("passwordError").classList)
+            }
+
+        }
     </script>
 </section>
 

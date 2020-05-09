@@ -53,12 +53,3 @@
 .right img {
     max-width: 300px;
 }
-
-.verify {
-    display: none;
-}
-
-.error {
-    color: red;
-    display: block;
-}
