@@ -189,6 +189,7 @@ a.article, a.article:hover {
 #content {
     padding: 20px;
     min-height: 100vh;
+    min-width: 80vw;
     transition: all 0.3s;
 }
 
@@ -248,4 +249,12 @@ a.article, a.article:hover {
     #sidebarCollapse span {
         display: none;
     }
+}
+
+#newPost input {
+    width: 100%;
+}
+
+#newPost textarea {
+    width: 100%;
 }

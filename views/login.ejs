@@ -19,13 +19,19 @@
             <div class="w-100 text-center">
                 <img src="https://image.flaticon.com/icons/svg/476/476863.svg">
                 <hr>
-                <form class="login-form" action="/login" method="POST">
+                <form onsubmit="return loginValidation()" id="loginForm" class="login-form" action="/login" method="POST">
                     <div class="form-group">
-                        <input type="text" name="username" placeholder="usuário">
+                        <input id="username" type="text" name="username" placeholder="usuário">
                     </div>
+
+                    <span class="verify" id="userError"><p>Forneça seu usuário ou cadastre-se!</p></span>
+                    
                     <div class="form-group">
-                        <input type="password" name="password" placeholder="senha">
+                        <input id="password" type="password" name="password" placeholder="senha">
                     </div>
+
+                    <span class="verify" id="passwordError"><p>Forneça sua senha!</p></span>
+
                     <div class="form-group py-3">
                         <button class="btn btn-large btn-primary" type="submit">Login</button>
                     </div>
@@ -34,6 +40,23 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function loginValidation() {
+            let username = document.getElementById("username")
+            let password = document.getElementById("password")
+
+            if(username.value === "") {
+                event.preventDefault();
+                document.getElementById("userError").classList.add("error")
+            }
+            if(password.value === "") {
+                event.preventDefault();
+                document.getElementById("passwordError").classList.add("error")
+            }
+        }
+        
+    </script>
 </section>
 
 <%- include("partials/footer") %> 
