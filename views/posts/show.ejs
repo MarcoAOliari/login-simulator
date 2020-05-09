@@ -28,11 +28,17 @@
     <button type="submit">Comentar</button>
 </form>
 
+<div class="line"></div>
+
 <h1>Comentários</h1>
 
-<% post.comments.forEach(function(comment){ %>
-    <h3>Comentário por <%= comment.author.username %> </h3>
-    <p><%= comment.text %> </p>
-<% }) %> 
+<div>
+    <% post.comments.forEach(function(comment){ %>
+        <h4><%= comment.text %></h4>
+        <p>-<%= comment.author.username %></p>
+    
+        <div class="line"></div>
+    <% }) %>   
+</div>
 
 <%- include("../partials/footer") %> 

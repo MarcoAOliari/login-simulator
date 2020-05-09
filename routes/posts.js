@@ -1,6 +1,7 @@
 const express = require("express"),
       User = require("../models/user"),
-      Post = require("../models/post");
+      Post = require("../models/post"),
+      Comment = require("../models/comment");
 
 let router = express.Router();
 
@@ -82,13 +83,21 @@ router.put("/profile/:user_id/posts/:post_id/edit", function(req, res){
 
 //DELETA POST
 router.delete("/profile/:user_id/posts/:post_id", function(req, res){
-    Post.findByIdAndRemove(req.params.post_id, function(err){
-        if(err){
-            console.log(err)
-        } else {
-            res.redirect("/profile/" + req.params.user_id + "/posts")
-        }
+    Post.findById(req.params.post_id, function(err, post){
+        Comment.deleteMany({
+            "_id": {
+                $in: post.comments
+            }
+        }, function(err){
+            if(err){
+                console.log(err)
+            } else {
+                post.remove();
+                res.redirect("/profile/" + req.params.user_id + "/posts")
+            }
+        })
     })
 })
+    
 
 module.exports = router;
