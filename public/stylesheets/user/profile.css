@@ -51,8 +51,8 @@ i, span {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 350px;
+    max-width: 350px;
     background: rgb(111, 163, 223);
     color: #fff;
     transition: all 0.3s;
@@ -189,7 +189,7 @@ a.article, a.article:hover {
 #content {
     padding: 20px;
     min-height: 100vh;
-    min-width: 80vw;
+    min-width: 60vw;
     transition: all 0.3s;
 }
 
@@ -251,12 +251,27 @@ a.article, a.article:hover {
     }
 }
 
-#newPost {
-    border: 3px solid rgb(78, 115, 148);
-    border-radius: 30px
+.header {
+    background-color: rgb(251, 253, 137);
+    border-radius: 10px;
+    text-align: center;
+    width:100%;
 }
 
-#newPost input {
+#newPost .my-4 {
+    border: 6px solid rgb(78, 115, 148);
+    border-radius: 30px;
+    background-color: white;
+}
+
+.header form {
+    width: 80%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+}
+
+#newPost div input {
     width: 100%;
     background: transparent;
     border: 0;
@@ -270,4 +285,14 @@ a.article, a.article:hover {
     background: transparent;
     border: 0;
     resize: none;
+    border-top: 3px solid rgb(78, 115, 148);
+    padding-left: 15px;
+    padding-top: 10px;
+}
+
+.postar {
+    background-color: rgb(78, 115, 148);
+    border: 0;
+    min-width: 90px;
+    width: 10%;
 }

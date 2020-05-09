@@ -6,13 +6,19 @@
 
 <%- include("../partials/sidebar") %>
 
-<h1>Olá <%= currentUser.firstName %> </h1>
+<div class="header py-3">
+    <h1 class="text-center">Olá <%= currentUser.firstName %> </h1>
+    <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
+        <div class="my-4">
+            <input class="py-3" type="text" name="post[title]" placeholder="Um título"><br>
+            <textarea name="post[text]" placeholder="Aqui vem seu post"></textarea>
+        </div>
+        <div class="text-center">
+            <button class="postar" type="submit">Postar</button>
+        </div>  
+    </form>
+</div>
 
-<form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
-    <input class="my-3" type="text" name="post[title]" placeholder="Um título"><br>
-    <textarea name="post[text]" placeholder="Aqui vem seu post"></textarea>
-    <button type="submit">Teste</button>
-</form>
 
 <div class="line"></div>
 
@@ -26,5 +32,7 @@
     <div class="line"></div>
 
 <% }) %> 
+
+</div>
 
 <%- include("../partials/footer") %> 
