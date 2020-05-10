@@ -1,6 +1,7 @@
 const express = require("express"),
       User = require("../models/user"),
-      passport = require("passport");
+      passport = require("passport"),
+      middleware = require("../middleware");
 
 let router = express.Router();
 
@@ -22,7 +23,7 @@ router.post("/login", passport.authenticate("local",
 });
 
 //Pagina inicial de perfil
-router.get("/profile/:id/posts", function(req, res){
+router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
     User.findById(req.params.id).populate("posts").exec(function(err, user){
         if(err){
             console.log(err)

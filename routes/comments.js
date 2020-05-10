@@ -1,12 +1,13 @@
 const express = require("express"),
       User = require("../models/user"),
       Post = require("../models/post"),
-      Comment = require("../models/comment");
+      Comment = require("../models/comment"),
+      middleware = require("../middleware");
 
 let router = express.Router();
 
 //CRIA NOVO COMENTÁRIO
-router.post("/profile/:user_id/posts/:post_id/comments/new", function(req, res){
+router.post("/profile/:user_id/posts/:post_id/comments/new", middleware.isLoggedIn, function(req, res){
     User.findById(req.user._id, function(err, user){
         if(err){
             console.log(err)

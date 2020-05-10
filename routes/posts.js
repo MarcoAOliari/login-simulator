@@ -1,12 +1,13 @@
 const express = require("express"),
       User = require("../models/user"),
       Post = require("../models/post"),
-      Comment = require("../models/comment");
+      Comment = require("../models/comment"),
+      middleware = require("../middleware");
 
 let router = express.Router();
 
 //CRIA NOVO POST NO BD
-router.post("/profile/:id/posts/new", function(req, res){
+router.post("/profile/:id/posts/new", middleware.isLoggedIn,function(req, res){
     User.findById(req.params.id, function(err, user){
         if(err){
             console.log(err)
@@ -28,7 +29,7 @@ router.post("/profile/:id/posts/new", function(req, res){
 })
 
 //MOSTRA POST COM COMENTÁRIOS
-router.get("/profile/:user_id/posts/:post_id", function(req, res){
+router.get("/profile/:user_id/posts/:post_id", middleware.isLoggedIn, function(req, res){
     Post.findById(req.params.post_id).populate("comments").exec(function(err, post){
         if(err){
             console.log(err)
@@ -39,7 +40,7 @@ router.get("/profile/:user_id/posts/:post_id", function(req, res){
 })
 
 //REGISTRA LIKE NO POST
-router.post("/profile/:user_id/posts/:post_id/like", function(req, res){
+router.post("/profile/:user_id/posts/:post_id/like", middleware.isLoggedIn, function(req, res){
     Post.findById(req.params.post_id, function(err, post){
         if(err){
             console.log(err)
