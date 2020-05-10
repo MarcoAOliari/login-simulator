@@ -37,6 +37,9 @@
         <h4><%= comment.text %></h4>
         <p>-<%= comment.author.username %></p>
     
+        <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/<%= comment._id %>/delete?_method=DELETE" method="POST">
+            <button type="submit">APAGAR</button>
+        </form>
         <div class="line"></div>
     <% }) %>   
 </div>

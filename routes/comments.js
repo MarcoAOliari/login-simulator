@@ -5,6 +5,7 @@ const express = require("express"),
 
 let router = express.Router();
 
+//CRIA NOVO COMENTÁRIO
 router.post("/profile/:user_id/posts/:post_id/comments/new", function(req, res){
     User.findById(req.user._id, function(err, user){
         if(err){
@@ -32,6 +33,29 @@ router.post("/profile/:user_id/posts/:post_id/comments/new", function(req, res){
                 }
             }
         )}
+    })
+})
+
+//REMOVE COMENTÁRIO
+router.delete("/profile/:user_id/posts/:post_id/comments/:comment_id/delete", function(req, res){
+    User.findByIdAndUpdate(req.user._id, {$pull: {comments: req.params.comment_id}}, function(err, user){
+        if(err){
+            console.log(err)
+        } else {
+            Post.findByIdAndUpdate(req.params.post_id, {$pull: {comments: req.params.comment_id}}, function(user, post){
+                if(err){
+                    console.log(err)
+                } else {
+                    Comment.findByIdAndRemove(req.params.comment_id, function(err){
+                        if(err){
+                            console.log(err)
+                        } else {
+                            res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+                        }
+                    })
+                }
+            })
+        }
     })
 })
 
