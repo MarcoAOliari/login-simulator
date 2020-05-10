@@ -84,6 +84,15 @@ router.put("/profile/:user_id/posts/:post_id/edit", function(req, res){
 //DELETA POST
 router.delete("/profile/:user_id/posts/:post_id", function(req, res){
     Post.findById(req.params.post_id, function(err, post){
+        if(err){
+            console.log(err)
+        }
+        User.findOneAndUpdate(post.author.id, {$pull: {posts: post._id}}, function(err, user){
+            if(err){
+                console.log(err)
+            }
+            user.save();
+        })
         Comment.deleteMany({
             "_id": {
                 $in: post.comments
