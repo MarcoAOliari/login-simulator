@@ -16,9 +16,10 @@
     <button type="submit">LIKE</button>
 </form>
 
+<h4>Likes: <%= post.likes.length %> </h4>
+
 <% if(currentUser && post.author.id === currentUser._id){ %> 
     <a href="/profile/<%= pageUser %>/posts/<%= post._id %>/edit"><button>EDITAR</button></a>
-    <h4>Likes: <%= post.likes.length %> </h4>
 
     <form action="/profile/<%= pageUser %>/posts/<%= post._id %>?_method=DELETE" method="POST">
         <button type="submit">DELETAR</button>
