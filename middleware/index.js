@@ -10,7 +10,7 @@ middlewareObj.checkPostOwnership = function(req, res, next){
             if(err){
                 console.log(err)
             } else {
-                if(post.author.id.equals(req.user._id)){
+                if(post.author.id === req.user._id){
                     next()
                 } else {
                     res.redirect("/")
@@ -29,7 +29,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
             if(err){
                 console.log(err)
             } else {
-                if(comment.author.id.equals(req.user_id)){
+                if(comment.author.id === req.user_id){
                     next()
                 } else {
                     res.redirect("/")

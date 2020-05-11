@@ -6,19 +6,20 @@
 
 <%- include("../partials/sidebar") %>
 
-<div class="header py-3">
-    <h1 class="text-center">Olá <%= currentUser.firstName %> </h1>
-    <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
-        <div class="my-4">
-            <input class="py-3" type="text" name="post[title]" placeholder="Um título"><br>
-            <textarea name="post[text]" placeholder="Aqui vem seu post"></textarea>
-        </div>
-        <div class="text-center">
-            <button class="postar" type="submit">Postar</button>
-        </div>  
-    </form>
-</div>
-
+<% if(currentUser && pageUser.equals(currentUser._id)){ %> 
+    <div class="header py-3">
+        <h1 class="text-center">Olá <%= currentUser.firstName %> </h1>
+        <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
+            <div class="my-4">
+                <input class="py-3" type="text" name="post[title]" placeholder="Um título"><br>
+                <textarea name="post[text]" placeholder="Aqui vem seu post"></textarea>
+            </div>
+            <div class="text-center">
+                <button class="postar" type="submit">Postar</button>
+            </div>  
+        </form>
+    </div>
+<% } %> 
 
 <div class="line"></div>
 

@@ -61,7 +61,7 @@ router.post("/profile/:user_id/posts/:post_id/like", middleware.isLoggedIn, func
 })
 
 //EXIBE FORMULÁRIO PARA EDITAR POST
-router.get("/profile/:user_id/posts/:post_id/edit", function(req, res){
+router.get("/profile/:user_id/posts/:post_id/edit", middleware.checkPostOwnership, function(req, res){
     Post.findById(req.params.post_id, function(err, post){
         if(err){
             console.log(err)
@@ -72,7 +72,7 @@ router.get("/profile/:user_id/posts/:post_id/edit", function(req, res){
 })
 
 //EDITA POST
-router.put("/profile/:user_id/posts/:post_id/edit", function(req, res){
+router.put("/profile/:user_id/posts/:post_id/edit", middleware.checkPostOwnership, function(req, res){
     Post.findByIdAndUpdate(req.params.post_id, req.body.post, function(err, post){
         if(err){
             console.log(err)
@@ -83,7 +83,7 @@ router.put("/profile/:user_id/posts/:post_id/edit", function(req, res){
 })
 
 //DELETA POST
-router.delete("/profile/:user_id/posts/:post_id", function(req, res){
+router.delete("/profile/:user_id/posts/:post_id", middleware.checkPostOwnership, function(req, res){
     Post.findById(req.params.post_id, function(err, post){
         if(err){
             console.log(err)

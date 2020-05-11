@@ -16,12 +16,14 @@
     <button type="submit">LIKE</button>
 </form>
 
-<a href="/profile/<%= pageUser %>/posts/<%= post._id %>/edit"><button>EDIT</button></a>
-<h4>Likes: <%= post.likes.length %> </h4>
+<% if(currentUser && post.author.id === currentUser._id){ %> 
+    <a href="/profile/<%= pageUser %>/posts/<%= post._id %>/edit"><button>EDITAR</button></a>
+    <h4>Likes: <%= post.likes.length %> </h4>
 
-<form action="/profile/<%= pageUser %>/posts/<%= post._id %>?_method=DELETE" method="POST">
-    <button type="submit">DELETAR</button>
-</form>
+    <form action="/profile/<%= pageUser %>/posts/<%= post._id %>?_method=DELETE" method="POST">
+        <button type="submit">DELETAR</button>
+    </form>
+<% } %> 
 
 <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/new" method="POST">
     <textarea type="text" name="comment[text]" placeholder="Comente!"></textarea>
@@ -37,14 +39,18 @@
         <h4><%= comment.text %></h4>
         <p>-<%= comment.author.username %></p>
     
-        <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/<%= comment._id %>/edit">
-            <button type="submit">EDITAR</button>
-        </form>
+        <% if(currentUser && comment.author.id === currentUser._id){ %> 
+            <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/<%= comment._id %>/edit">
+                <button type="submit">EDITAR</button>
+            </form>
 
-        <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/<%= comment._id %>/delete?_method=DELETE" method="POST">
-            <button type="submit">APAGAR</button>
-        </form>
-        <div class="line"></div>
+            <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/<%= comment._id %>/delete?_method=DELETE" method="POST">
+                <button type="submit">APAGAR</button>
+            </form>
+        <% } %>
+
+        <div class="line"></div> 
+        
     <% }) %>   
 </div>
 

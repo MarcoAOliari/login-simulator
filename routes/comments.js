@@ -38,7 +38,7 @@ router.post("/profile/:user_id/posts/:post_id/comments/new", middleware.isLogged
 })
 
 //MOSTRA FORMULÁRIO PARA EDIÇÃO DE COMENTÁRIO
-router.get("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", function(req, res){
+router.get("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
     Comment.findById(req.params.comment_id, function(err, comment){
         if(err){
             console.log(err)
@@ -49,7 +49,7 @@ router.get("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", functio
 })
 
 //EDITA FORMULÁRIO
-router.put("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", function(req, res){
+router.put("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", middleware.checkCommentOwnership, function(req, res){
     Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, comment){
         if(err){
             console.log(err)
@@ -60,7 +60,7 @@ router.put("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", functio
 })
 
 //REMOVE COMENTÁRIO
-router.delete("/profile/:user_id/posts/:post_id/comments/:comment_id/delete", function(req, res){
+router.delete("/profile/:user_id/posts/:post_id/comments/:comment_id/delete", middleware.checkCommentOwnership, function(req, res){
     User.findByIdAndUpdate(req.user._id, {$pull: {comments: req.params.comment_id}}, function(err, user){
         if(err){
             console.log(err)
