@@ -37,6 +37,28 @@ router.post("/profile/:user_id/posts/:post_id/comments/new", middleware.isLogged
     })
 })
 
+//MOSTRA FORMULÁRIO PARA EDIÇÃO DE COMENTÁRIO
+router.get("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", function(req, res){
+    Comment.findById(req.params.comment_id, function(err, comment){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("comments/edit", {pageUser: req.params.user_id, post: req.params.post_id, comment: comment})
+        }
+    })
+})
+
+//EDITA FORMULÁRIO
+router.put("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", function(req, res){
+    Comment.findByIdAndUpdate(req.params.comment_id, req.body.comment, function(err, comment){
+        if(err){
+            console.log(err)
+        } else {
+            res.redirect("/profile/" + req.params.user_id +"/posts/" + req.params.post_id)
+        }
+    })
+})
+
 //REMOVE COMENTÁRIO
 router.delete("/profile/:user_id/posts/:post_id/comments/:comment_id/delete", function(req, res){
     User.findByIdAndUpdate(req.user._id, {$pull: {comments: req.params.comment_id}}, function(err, user){

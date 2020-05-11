@@ -21,7 +21,7 @@ var commentSchema = new mongoose.Schema({
             ref: "User",
         }
     ],
-    registerAt: {
+    updatedAt: {
         type: Date,
         default: Date.now
     },

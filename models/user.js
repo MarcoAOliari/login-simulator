@@ -7,7 +7,7 @@ var userSchema = new mongoose.Schema({
     firstName: String,
     surname: String,
     email: String,
-    registerAt: {
+    registeredAt: {
         type: Date,
         default: Date.now
     },

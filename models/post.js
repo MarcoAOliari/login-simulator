@@ -22,7 +22,7 @@ var postSchema = new mongoose.Schema({
             ref: "Comment"
         }
     ],
-    registerAt: {
+    updatedAt: {
         type: Date,
         default: Date.now
     }

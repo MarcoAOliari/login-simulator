@@ -1,0 +1,4 @@
+<form action="/profile/<%= pageUser %>/posts/<%= post %>/comments/<%= comment._id %>/edit?_method=PUT" method="POST">
+    <input type="text" value="<%= comment.text %>" name="comment[text]">
+    <button type="submit">EDITAR</button>
+</form>
