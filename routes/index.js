@@ -24,7 +24,7 @@ router.post("/login", passport.authenticate("local",
 
 //Pagina inicial de perfil
 router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
-    User.findById(req.params.id).populate("posts").exec(function(err, user){
+    User.findById(req.params.id).populate({path: "posts", options: {sort: {registerAt: -1}}}).exec(function(err, user){
         if(err){
             console.log(err)
         } else {
@@ -89,6 +89,16 @@ router.put("/profile/:id/edit", function(req, res){
             res.redirect("/profile/" + user.id + "/posts")
         }
     })
+})
+
+/*
+LOGOUT
+*/
+
+//Faz logout
+router.get("/logout", middleware.isLoggedIn, function(req, res){
+    req.logout()
+    res.redirect("/")
 })
 
 module.exports = router;

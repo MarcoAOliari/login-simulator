@@ -21,7 +21,11 @@ var postSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
         }
-    ]
+    ],
+    registerAt: {
+        type: Date,
+        default: Date.now
+    }
 });
 
 module.exports = mongoose.model("Post", postSchema);

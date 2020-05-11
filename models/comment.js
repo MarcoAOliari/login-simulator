@@ -20,7 +20,11 @@ var commentSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.String,
             ref: "User",
         }
-    ]
+    ],
+    registerAt: {
+        type: Date,
+        default: Date.now
+    },
 });
 
 module.exports = mongoose.model("Comment", commentSchema);
