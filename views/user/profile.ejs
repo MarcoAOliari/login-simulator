@@ -35,4 +35,12 @@
 
 </div>
 
+<div class="container">
+    <% for(var i=0; i<users.length && i<10; i++){ %>
+        <% if(currentUser._id !== users[i]._id){ %> 
+            <a style="width: 50%;" href="/profile/<%= users[i]._id %>/posts"><%= users[i].firstName %> <%= users[i].surname %></a>
+        <% } %> 
+    <% } %> 
+</div>
+
 <%- include("../partials/footer") %> 

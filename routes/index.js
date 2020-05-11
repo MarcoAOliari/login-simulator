@@ -28,7 +28,13 @@ router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
         if(err){
             console.log(err)
         } else {
-            res.render("user/profile", {pageUser: user});
+            User.find({$query: {}, $orderby: {registeredAt: -1}}, function(err, allUsers){
+                if(err){
+                    console.log(err)
+                } else {
+                    res.render("user/profile", {pageUser: user, users: allUsers});
+                }
+            })
         }
     })
 })
