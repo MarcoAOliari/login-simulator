@@ -45,17 +45,19 @@ router.post("/profile/:user_id/posts/:post_id/like", middleware.isLoggedIn, func
         if(err){
             console.log(err)
         } else {
-            User.findById(req.user._id, function(err, user){
-                if(err){
-                    console.log(err)
-                } else {
-                    user.likes.push(post)
-                    post.likes.push(user)
-                    user.save()
-                    post.save()
-                    res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
-                }
-            })
+            if(post.likes.indexOf(req.user._id) === -1){
+                User.findById(req.user._id, function(err, user){
+                    if(err){
+                        console.log(err)
+                    } else {
+                        user.likes.push(post)
+                        post.likes.push(user)
+                        user.save()
+                        post.save()
+                    }
+                })
+            }
+            res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
         }
     })
 })
