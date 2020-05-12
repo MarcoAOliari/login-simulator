@@ -24,7 +24,7 @@ router.post("/login", passport.authenticate("local",
 
 //Pagina inicial de perfil
 router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
-    User.findById(req.params.id).populate({path: "posts", options: {sort: {registerAt: -1}}}).exec(function(err, user){
+    User.findById(req.params.id).populate({path: "posts", options: {sort: {updatedAt: -1}}}).exec(function(err, user){
         if(err){
             console.log(err)
         } else {

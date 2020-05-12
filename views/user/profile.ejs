@@ -37,11 +37,16 @@
 </div>
 
 <div class="container">
+    <div class="row text-center pt-5">
     <% for(var i=0; i<users.length && i<10; i++){ %>
-        <% if(currentUser._id !== users[i]._id){ %> 
-            <a style="width: 50%;" href="/profile/<%= users[i]._id %>/posts"><%= users[i].firstName %> <%= users[i].surname %></a>
+        <% if(currentUser._id !== users[i]._id){ %>
+            <div class="col-md-6 py-3">
+                <img style="width: 50%" src="https://image.flaticon.com/icons/svg/435/435061.svg"><br>
+                <a href="/profile/<%= users[i]._id %>/posts"><%= users[i].firstName %> <%= users[i].surname %></a>
+            </div>        
         <% } %> 
     <% } %> 
+    </div>
 </div>
 
 <%- include("../partials/footer") %> 
