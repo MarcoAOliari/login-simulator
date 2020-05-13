@@ -5,27 +5,22 @@
 <div class="wrapper">
     <!-- Sidebar Holder -->
     <nav id="sidebar">
-        <div class="sidebar-header">
-            <a href="/profile/<%= currentUser._id %>/posts"><h3>Login Simulator</h3></a>
-            <a href="/profile/<%= currentUser._id %>/posts"><strong>LS</strong></a>
+        <div class="sidebar-header text-center">
+            <a href="/profile/<%= currentUser._id %>/posts"><img style="width: 50%; min-width: 40px" class="mx-auto d-block pb-3" src="https://image.flaticon.com/icons/svg/435/435061.svg"></a>
+            <a href="/profile/<%= currentUser._id %>/posts">Olá, <%= currentUser.firstName %></a>
         </div>
 
         <ul class="list-unstyled components">
             <li class="active">
                 <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false">
-                    <i class="glyphicon glyphicon-home"></i>
-                    Home
+                    <i class="fas fa-home"></i>
+                    Minhas Postagens
                 </a>
-                <ul class="collapse list-unstyled" id="homeSubmenu">
-                    <li><a href="#">Home 1</a></li>
-                    <li><a href="#">Home 2</a></li>
-                    <li><a href="#">Home 3</a></li>
-                </ul>
             </li>
             <li>
                 <a href="#">
-                    <i class="glyphicon glyphicon-briefcase"></i>
-                    Likes
+                    <i class="far fa-thumbs-up"></i>
+                    Meus Likes
                 </a>
                 <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false">
                     <i class="glyphicon glyphicon-duplicate"></i>
@@ -51,7 +46,7 @@
             </li>
             <li>
                 <a href="/profile/<%= currentUser.id %>/edit">
-                    <i class="glyphicon glyphicon-send"></i>
+                    <i class="fas fa-user-circle"></i>
                     Editar Perfil
                 </a>
             </li>
@@ -70,12 +65,10 @@
             <div class="container-fluid">
 
                 <div class="navbar-header">
-                    <button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
-                        <img style="width: 35px" src="https://image.flaticon.com/icons/svg/2864/2864725.svg">
-                        <span>Imagem usuário + nome</span>
+                    <button type="button" id="sidebarCollapse" class="btn navbar-btn">
+                        <i class="fas fa-bars"></i>
+                        <!-- <span>Imagem Toggle</span> -->
                     </button>
-                    <a style="color: blue" href="">Olá <%= currentUser.firstName %></a>
-                    <a href=""></a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">

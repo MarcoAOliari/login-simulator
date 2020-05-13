@@ -4,95 +4,49 @@
     <link href="/stylesheets/user/profile.css" rel="stylesheet" type="text/css">
 </head>
 
-<%- //include("../partials/sidebar") %>
+<%- include("../partials/sidebar") %>
 
-<div class="row">
-    <div class="col-md-2 sidebar">
-        <nav class="sticky-top">
-            <div>
-                <div class="left-profile text-center py-5 w-100">
-                    <a href="/profile/<%= currentUser._id %>/posts"><img class="mx-auto d-block pb-3" src="https://image.flaticon.com/icons/svg/435/435061.svg"></a>
-                    <a href="/profile/<%= currentUser._id %>/posts">Olá, <%= currentUser.firstName %></a>
-                </div>
-                <ul>
-                    <li class="page">
-                        <a href="">
-                            <div class="icon text-center">
-                                <i class="fas fa-user-circle fa-2x"></i>
-                            </div>
-                            <div style="width:65%">
-                                <p></p>
-                            </div>
-                        </a>
-                    </li> 
-                    <li class="page">
-                        <div class="container">
-                            <div class="row d-flex">
-                                <div class="col-1"></div>
-                                <div class="col-2 text-center">
-                                    <i class="fas fa-user-circle fa-2x"></i>
-                                </div>
-                                <div class="col-8">
-                                    <p >Meus posts aaaa</p>
-                                </div>
-                            </div>
-                        </div>
-                    </li>   
-
-                    <div class="page d-flex justify-content-center align-items-center">
-                        <i class="col-3 fas fa-user-circle fa-2x"></i>
-                        <h4>Editar Perfil</h4>
-                    </div>  
-                </ul>
-                
+<% if(currentUser && pageUser.equals(currentUser._id)){ %> 
+    <div class="header py-3">
+        <h1 class="text-center">Olá <%= currentUser.firstName %> </h1>
+        <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
+            <div class="my-4">
+                <input class="py-3" type="text" name="post[title]" placeholder="Um título"><br>
+                <textarea name="post[text]" placeholder="Aqui vem seu post"></textarea>
             </div>
-        </nav>
-        
+            <div class="text-center">
+                <button class="postar" type="submit">Postar</button>
+            </div>  
+        </form>
     </div>
+<% } %> 
 
-    <div class="col-md-7">
-        <% if(currentUser && pageUser.equals(currentUser._id)){ %> 
-            <div class="header py-3">
-                <h1 class="text-center">Olá <%= currentUser.firstName %> </h1>
-                <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
-                    <div class="my-4">
-                        <input class="py-3" type="text" name="post[title]" placeholder="Um título"><br>
-                        <textarea name="post[text]" placeholder="Aqui vem seu post"></textarea>
-                    </div>
-                    <div class="text-center">
-                        <button class="postar" type="submit">Postar</button>
-                    </div>  
-                </form>
-            </div>
-        <% } %> 
-        
-        <div class="line"></div>
-        
-        <% pageUser.posts.forEach(function(post){ %>
-        
-            <h2><%= post.title %></h2>
-            <p><%= post.text %></p>
-        
-            <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>"><button>VER POST</button></a>
-        
-            <div class="line"></div>
-        
-        <% }) %> 
-    </div>
+<div class="line"></div>
 
-    <div class="col-md-3">
-        <div class="row text-center pt-5">
-            <% for(var i=0; i<users.length && i<10; i++){ %>
-                <% if(currentUser._id !== users[i]._id){ %>
-                    <div class="col-md-6 py-3">
-                        <img style="width: 50%" src="https://image.flaticon.com/icons/svg/435/435061.svg"><br>
-                        <a href="/profile/<%= users[i]._id %>/posts"><%= users[i].firstName %> <%= users[i].surname %></a>
-                    </div>        
-                <% } %> 
-            <% } %> 
-        </div>
-    </div>
+<% pageUser.posts.forEach(function(post){ %>
+
+    <h2><%= post.title %></h2>
+    <p><%= post.text %></p>
+
+    <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>"><button>VER POST</button></a>
+
+    <div class="line"></div>
+
+<% }) %> 
+
 </div>
 
+<div class="container">
+    <div class="row text-center pt-5">
+    <% for(var i=0; i<users.length && i<10; i++){ %>
+        <% if(currentUser._id !== users[i]._id){ %>
+            <div class="col-md-6 py-3">
+                <img style="width: 50%" src="https://image.flaticon.com/icons/svg/435/435061.svg"><br>
+                <a href="/profile/<%= users[i]._id %>/posts"><%= users[i].firstName %> <%= users[i].surname %></a>
+            </div>        
+        <% } %> 
+    <% } %> 
+    </div>
+</div>
 
 <%- include("../partials/footer") %> 
