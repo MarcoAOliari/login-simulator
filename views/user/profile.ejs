@@ -6,33 +6,48 @@
 
 <%- //include("../partials/sidebar") %>
 
-
 <div class="row">
     <div class="col-md-2 sidebar">
-        <div class="sticky-top">
-            <div class="left-profile text-center py-5 w-100">
-                <a href="/profile/<%= currentUser._id %>/posts"><img class="mx-auto d-block pb-3" src="https://image.flaticon.com/icons/svg/435/435061.svg"></a>
-                <a href="/profile/<%= currentUser._id %>/posts">Olá, <%= currentUser.firstName %></a>
+        <nav class="sticky-top">
+            <div>
+                <div class="left-profile text-center py-5 w-100">
+                    <a href="/profile/<%= currentUser._id %>/posts"><img class="mx-auto d-block pb-3" src="https://image.flaticon.com/icons/svg/435/435061.svg"></a>
+                    <a href="/profile/<%= currentUser._id %>/posts">Olá, <%= currentUser.firstName %></a>
+                </div>
+                <ul>
+                    <li class="page">
+                        <a href="">
+                            <div class="icon text-center">
+                                <i class="fas fa-user-circle fa-2x"></i>
+                            </div>
+                            <div style="width:65%">
+                                <p></p>
+                            </div>
+                        </a>
+                    </li> 
+                    <li class="page">
+                        <div class="container">
+                            <div class="row d-flex">
+                                <div class="col-1"></div>
+                                <div class="col-2 text-center">
+                                    <i class="fas fa-user-circle fa-2x"></i>
+                                </div>
+                                <div class="col-8">
+                                    <p >Meus posts aaaa</p>
+                                </div>
+                            </div>
+                        </div>
+                    </li>   
+
+                    <div class="page d-flex justify-content-center align-items-center">
+                        <i class="col-3 fas fa-user-circle fa-2x"></i>
+                        <h4>Editar Perfil</h4>
+                    </div>  
+                </ul>
+                
             </div>
-            <div class="page">
-                <a href="">
-                    <i class="col-3 fas fa-home fa-2x"></i>
-                    <h4>Meus Posts</h4>
-                </a> 
-            </div>
-            <div class="page d-flex justify-content-center align-items-center">
-                <i class="col-3 far fa-thumbs-up fa-2x"></i>
-                <h4>Meus Likes</h4>
-            </div>
-            <div class="page d-flex justify-content-center align-items-center">
-                <i class="col-3 far fa-comments fa-2x"></i>
-                <h4>Meus Comentários</h4>
-            </div>       
-            <div class="page d-flex justify-content-center align-items-center">
-                <i class="col-3 fas fa-user-circle fa-2x"></i>
-                <h4>Editar Perfil</h4>
-            </div>  
-        </div>
+        </nav>
+        
     </div>
 
     <div class="col-md-7">

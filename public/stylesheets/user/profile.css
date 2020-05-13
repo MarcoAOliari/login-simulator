@@ -23,6 +23,11 @@ p {
     width: 64px;
 }
 
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
 .page {
     height: 60px;
     width: 100%;
@@ -32,8 +37,15 @@ p {
     color: rgb(32, 35, 53)
 }
 
-.page i {
-    width: 100px;
+.page .icon {
+    height: 100%;
+    width: 35%;
+}
+
+.icon i {
+    padding-top: 12px;
+    width: 100%;
+    position: relative;
 }
 
 .line {
