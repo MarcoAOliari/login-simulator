@@ -18,13 +18,22 @@
 <div class="line"></div>
 
 <% pageUser.posts.forEach(function(post){ %>
+    <div class="row pl-3">
+        <div class="col-1">
+            <img style="width: 50px" src="<%= pageUser.profileIconURL %>">
+        </div>
 
-    <p><%= post.text %></p>
-
-    <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>"><button>VER POST</button></a>
-
-    <div class="line"></div>
-
+        <div class="col-11">
+            <h4><%= pageUser.firstName %> - <%= pageUser.id %> </h4>
+            <p><%= post.text %></p>
+            <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>"><button>VER POST</button></a>
+        </div>
+        
+        
+        <div class="line"></div>  
+    </div>   
+        
+    
 <% }) %> 
 
 </div>

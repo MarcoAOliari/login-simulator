@@ -7,6 +7,10 @@ var userSchema = new mongoose.Schema({
     firstName: String,
     surname: String,
     email: String,
+    profileIconURL: {
+        type: String,
+        default: "https://image.flaticon.com/icons/svg/435/435061.svg"
+    },
     registeredAt: {
         type: Date,
         default: Date.now
