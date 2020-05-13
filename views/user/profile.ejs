@@ -8,15 +8,9 @@
 
 <% if(currentUser && pageUser.equals(currentUser._id)){ %> 
     <div class="header py-3">
-        <h1 class="text-center">Olá <%= currentUser.firstName %> </h1>
         <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
-            <div class="my-4">
-                <input class="py-3" type="text" name="post[title]" placeholder="Um título"><br>
-                <textarea name="post[text]" placeholder="Aqui vem seu post"></textarea>
-            </div>
-            <div class="text-center">
-                <button class="postar" type="submit">Postar</button>
-            </div>  
+            <textarea class="pb-3 pl-3" name="post[text]" placeholder="Aqui vem seu post"></textarea>
+            <button class="postar" type="submit">Postar</button>
         </form>
     </div>
 <% } %> 
@@ -25,7 +19,6 @@
 
 <% pageUser.posts.forEach(function(post){ %>
 
-    <h2><%= post.title %></h2>
     <p><%= post.text %></p>
 
     <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>"><button>VER POST</button></a>
@@ -37,15 +30,16 @@
 </div>
 
 <div class="container">
-    <div class="row text-center pt-5">
-    <% for(var i=0; i<users.length && i<10; i++){ %>
-        <% if(currentUser._id !== users[i]._id){ %>
-            <div class="col-md-6 py-3">
-                <img style="width: 50%" src="https://image.flaticon.com/icons/svg/435/435061.svg"><br>
-                <a href="/profile/<%= users[i]._id %>/posts"><%= users[i].firstName %> <%= users[i].surname %></a>
-            </div>        
+    <div class="row text-center py-3">
+        <h3 class="w-100 py-4">Novos Usuários</h3><br>
+        <% for(var i=0; i<users.length && i<10; i++){ %>
+            <% if(currentUser._id !== users[i]._id){ %>
+                <div class="col-md-6 py-3">
+                    <img style="width: 50%" src="https://image.flaticon.com/icons/svg/435/435061.svg"><br>
+                    <a href="/profile/<%= users[i]._id %>/posts"><%= users[i].firstName %> <%= users[i].surname %></a>
+                </div>        
+            <% } %> 
         <% } %> 
-    <% } %> 
     </div>
 </div>
 

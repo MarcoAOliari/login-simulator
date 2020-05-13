@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 
 var postSchema = new mongoose.Schema({
-    title: String,
     text: String,
     author: {
         id: {

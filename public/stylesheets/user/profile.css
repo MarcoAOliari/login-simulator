@@ -1,5 +1,5 @@
 body {
-    background-color: aliceblue;
+    background-color: white;
 }
 
 p {
@@ -18,7 +18,7 @@ a, a:hover, a:focus {
 
 .navbar {
     padding: 15px 10px;
-    background: #fff;
+    background: aliceblue;
     border: none;
     border-radius: 0;
     margin-bottom: 40px;
@@ -252,16 +252,14 @@ a.article, a.article:hover {
 }
 
 .header {
-    background-color: rgb(251, 253, 137);
-    border-radius: 10px;
+    background-color: aliceblue;
+    border-radius: 5px;
     text-align: center;
     width:100%;
 }
 
-#newPost .my-4 {
-    border: 6px solid rgb(78, 115, 148);
-    border-radius: 30px;
-    background-color: white;
+#newPost {
+    width: 100%;
 }
 
 .header form {
@@ -271,13 +269,10 @@ a.article, a.article:hover {
     position: relative;
 }
 
-#newPost div input {
+#newPost input {
     width: 100%;
     background: transparent;
     border: 0;
-    border-bottom: 3px solid rgb(78, 115, 148);
-    padding-left: 15px;
-    padding-bottom: 10px; 
 }
 
 #newPost textarea {
@@ -285,14 +280,13 @@ a.article, a.article:hover {
     background: transparent;
     border: 0;
     resize: none;
-    border-top: 3px solid rgb(78, 115, 148);
-    padding-left: 15px;
-    padding-top: 10px;
 }
 
 .postar {
-    background-color: rgb(78, 115, 148);
+    background-color: #161530;
     border: 0;
-    min-width: 90px;
+    color: white;
     width: 10%;
+    border-radius: 5px;
+    min-width: 65px;
 }
