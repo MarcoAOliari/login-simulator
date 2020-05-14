@@ -1,0 +1,38 @@
+<%- include("../partials/header") %> 
+
+<head>
+    <link href="/stylesheets/user/profile.css" rel="stylesheet" type="text/css">
+    <link href="/stylesheets/user/find.css" rel="stylesheet" type="text/css">
+</head>
+
+<%- include("../partials/sidebar") %>
+
+<div class="container">
+    <div class="row">
+        <div class="card-deck w-100">
+            <% users.forEach(function(user){ %>
+
+                <div class="col-lg-3 col-md-4 col-sm-6 col-xs-12 py-3">
+                    <div class="card text-center">
+                        <div class="icon-background">
+                            <img class="card-img-top mx-auto py-2" src="https://image.flaticon.com/icons/svg/435/435061.svg"></i>
+                        </div>
+                        
+                        <div class="card-text">
+                            <a href="/profile/<%= user._id %>/posts">
+                                <p class="pt-2 card-title"><%= user.firstName %></p>
+                                <p><%= user.username %> </p>
+                            </a>
+                            
+                        </div>
+                    </div>
+                </div>
+                
+            <% }) %>
+        </div> 
+    </div>
+</div>
+
+</div>
+
+<%- include("../partials/footer") %> 

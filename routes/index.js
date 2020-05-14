@@ -98,6 +98,20 @@ router.put("/profile/:id/edit", function(req, res){
 })
 
 /*
+ENCONTRAR NOVOS USUÁRIOS
+*/
+
+router.get("/profile/find", function(req, res){
+    User.find({}).limit(10).exec(function(err, allUsers){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("user/find", {users: allUsers})
+        }
+    })
+})
+
+/*
 LOGOUT
 */
 

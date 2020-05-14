@@ -1,0 +1,11 @@
+#content {
+    width: 90vw;
+}
+
+.icon-background {
+    background-color: rgb(32, 35, 53);
+}
+
+.icon-background img {
+    width: 60%;
+}
