@@ -282,11 +282,41 @@ a.article, a.article:hover {
     resize: none;
 }
 
-.postar {
-    background-color: #161530;
-    border: 0;
-    color: white;
-    width: 10%;
-    border-radius: 5px;
-    min-width: 65px;
+@media (max-width:767px) {
+    .col-md-11 h4 {
+        font-size: 18px;
+    }
 }
+
+.postar{
+    display:inline-block;
+    padding:0.5em 2em;
+    border:0.16em solid #161530;
+    margin:0 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration:none;
+    text-transform:uppercase;
+    font-family:'Roboto',sans-serif;
+    font-weight:400;
+    color: white;
+    text-align:center;
+    transition: all 0.15s;
+    background-color: rgb(44, 38, 73)
+}
+
+.postar:hover{
+    background-color: white;
+    color:rgb(44, 38, 73);
+    border-color:rgb(44, 38, 73);
+}
+.postar:active{
+    color:#BBBBBB;
+    border-color:#BBBBBB;
+}
+
+@media all and (max-width:30em){
+    .postar{
+        display:block;
+        margin:0.4em auto;
+    }
+} 
