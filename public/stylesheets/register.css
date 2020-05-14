@@ -7,7 +7,7 @@ body {
 }
 
 .card {
-    box-shadow: 0 4px 8px 0 rgb(18, 102, 197), 0 6px 20px 0 rgb(18, 102, 197);
+    box-shadow: 0 2px 4px 0 rgb(18, 102, 197), 0 3px 10px 0 rgb(18, 102, 197);
 }
 
 .card-header {
@@ -26,4 +26,10 @@ body {
     border: 0;
     border-radius: 3px;
     width: 80%;
+}
+
+@media screen and (max-width: 767px) {
+    .card {
+        width: 90%;
+    }
 }

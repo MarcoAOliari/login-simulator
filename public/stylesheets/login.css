@@ -3,8 +3,9 @@
     margin: 0;
 }
 
-#home .col-md-6 {
+#home .col-lg-6 {
     height: 100vh;
+    min-height: 800px;
     width: 100%;
 }
 
@@ -29,9 +30,10 @@
 }
 
 .left {
-    background-color: rgb(111, 163, 223);
+    background-color: #161530;
     height: 100vh;
     flex-wrap: wrap;
+    color: white
 }
 
 .left img {
@@ -47,10 +49,15 @@
     margin: 0 auto;
 }
 
-@media (max-width:767px) {
-    .left {
-        height: inherit;
-        width: 100vw;
+@media screen and (max-width: 767px) {
+    .left p {
+        font-size: 16px;
+    }
+    .left h1 {
+        font-size: 30px;
+    }
+    .left img {
+        width: 200px;
     }
 }
 
