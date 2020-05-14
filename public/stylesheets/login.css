@@ -30,6 +30,7 @@
 
 .left {
     background-color: rgb(111, 163, 223);
+    height: 100vh;
     flex-wrap: wrap;
 }
 
@@ -44,6 +45,13 @@
     width: 80%;
     min-width: 300px;
     margin: 0 auto;
+}
+
+@media (max-width:767px) {
+    .left {
+        height: inherit;
+        width: 100vw;
+    }
 }
 
 .right {
