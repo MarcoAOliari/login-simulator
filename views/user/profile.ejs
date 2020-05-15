@@ -6,7 +6,7 @@
 
 <%- include("../partials/sidebar") %>
 
-<% if(currentUser && pageUser.equals(currentUser._id)){ %> 
+<% if(currentUser && pageUser._id.equals(currentUser._id)){ %> 
     <div class="header py-3">
         <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
             <textarea class="pb-3 pl-3" name="post[text]" placeholder="Aqui vem seu post"></textarea>
@@ -24,7 +24,7 @@
         </div>
 
         <div class="col-md-11 col-sm-10">
-            <h4><%= pageUser.firstName %> - <%= pageUser.id %> </h4>
+            <h4><%= pageUser.firstName %> - <%= pageUser.username %> </h4>
             
             <p><%= post.text %></p>
             <a href="/profile/<%= pageUser.id %>/posts/<%= post._id %>"><button class="postar">VER POST</button></a>

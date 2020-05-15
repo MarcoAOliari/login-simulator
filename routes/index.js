@@ -42,7 +42,8 @@ router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
 
 //Timeline
 router.get("/profile/:id/timeline", function(req, res){
-    Post.find({$query: {}, $orderby: {updatedAt: -1}}).populate("user").exec(function(err, allPosts){
+    Post.find({}).populate("author.id").exec(function(err, allPosts){
+        console.log(allPosts)
         if(err){
             console.log(err)
         } else {
