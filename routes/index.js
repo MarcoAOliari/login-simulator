@@ -1,5 +1,6 @@
 const express = require("express"),
       User = require("../models/user"),
+      Post = require("../models/post"),
       passport = require("passport"),
       middleware = require("../middleware");
 
@@ -39,6 +40,17 @@ router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
     })
 })
 
+//Timeline
+router.get("/profile/:id/timeline", function(req, res){
+    Post.find({$query: {}, $orderby: {updatedAt: -1}}).populate("user").exec(function(err, allPosts){
+        if(err){
+            console.log(err)
+        } else {
+            res.render("user/timeline", {posts: allPosts})
+        }
+    })
+})
+
 /*
 CADASTRO
 */
@@ -54,7 +66,6 @@ router.post("/register/new", function(req, res){
         firstName: req.body.firstName,
         surname: req.body.surname,
         email: req.body.email,
-        _id: req.body.username,
         username: req.body.username,
         birth: req.body.birth
     });

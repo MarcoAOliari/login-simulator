@@ -4,7 +4,7 @@ var commentSchema = new mongoose.Schema({
     text: String,
     author: {
         id: {
-            type: mongoose.Schema.Types.String,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "User"
         },
         username: String
@@ -17,7 +17,7 @@ var commentSchema = new mongoose.Schema({
     },
     likes: [
         {
-            type: mongoose.Schema.Types.String,
+            type: mongoose.Schema.Types.ObjectId,
             ref: "User",
         }
     ],

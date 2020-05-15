@@ -1,5 +1,6 @@
 let Post = require("../models/post")
 let Comment = require("../models/comment")
+let User = require("../models/user")
 
 let middlewareObj = {}
 
@@ -29,7 +30,26 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
             if(err){
                 console.log(err)
             } else {
-                if(comment.author.id === req.user_id){
+                if(comment.author.id === req.user._id){
+                    next()
+                } else {
+                    res.redirect("/")
+                }
+            }
+        })
+    } else {
+        res.redirect("/")
+    }
+}
+
+//VERIFICA SE A TIMELINE PERTENCE AO USUÁRIO
+middlewareObj.checkTimelineOwnership = function(req, res, next){
+    if(req.isAuthenticated()){
+        User.findById(req.params.user_id, function(err, user){
+            if(err){
+                console.log(err)
+            } else {
+                if(req.params.user_id === req.user._id){
                     next()
                 } else {
                     res.redirect("/")
