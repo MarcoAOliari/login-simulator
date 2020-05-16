@@ -20,7 +20,7 @@ router.post("/login", passport.authenticate("local",
     {
         failureRedirect: "/"
     }), function(req, res){
-        res.redirect("/profile/" + req.user._id + "/posts")
+        res.redirect("/profile/" + req.user._id + "/timeline")
 });
 
 //Pagina inicial de perfil
@@ -42,12 +42,17 @@ router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
 
 //Timeline
 router.get("/profile/:id/timeline", function(req, res){
-    Post.find({}).populate("author.id").exec(function(err, allPosts){
-        console.log(allPosts)
+    Post.find().sort({updatedAt: -1}).populate("author.id").exec(function(err, allPosts){
         if(err){
             console.log(err)
         } else {
-            res.render("user/timeline", {posts: allPosts})
+            User.find({$query: {}, $orderby: {registeredAt: -1}}, function(err, allUsers){
+                if(err){
+                    console.log(err)
+                } else {
+                    res.render("user/timeline", {posts: allPosts, users: allUsers})
+                }
+            })
         }
     })
 })

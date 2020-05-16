@@ -6,6 +6,10 @@
 
 <%- include("../partials/sidebar") %>
 
+<script>
+    document.getElementById("home").classList.add("active")
+</script>
+
     <div class="header py-3">
         <form id="newPost" action="/profile/<%= currentUser._id %>/posts/new" method="POST">
             <textarea class="pb-3 pl-3" name="post[text]" placeholder="Aqui vem seu post"></textarea>
@@ -18,7 +22,7 @@
 <% posts.forEach(function(post){ %>
     <div class="row pl-3">
         <div class="col-md-1 col-sm-2 py-3">
-            <img src="<%= post.author.id.profileIconURL %>">
+            <img style="min-width: 50px; max-width: 80px" src="<%= post.author.id.profileIconURL %>">
         </div>
 
         <div class="col-md-11 col-sm-10">
@@ -36,18 +40,18 @@
 
 </div>
 
-<!-- <div class="container">
+<div class="container">
     <div class="row d-none d-lg-block text-center py-3">
         <h3 class="w-100 py-2">Novos Usuários</h3><br>
-        <%// for(var i=0; i<users.length && i<10; i++){ %>
-            <%// if(currentUser._id !== users[i]._id){ %>
+        <% for(var i=0; i<users.length && i<10; i++){ %>
+            <% if(currentUser._id !== users[i]._id){ %>
                 <div class="py-3">
                     <img style="width: 25%" src="https://image.flaticon.com/icons/svg/435/435061.svg"><br>
-                    <a href="/profile/<%=// users[i]._id %>/posts"><%=// users[i].firstName %> <%=// users[i].surname %></a>
+                    <a href="/profile/<%= users[i]._id %>/posts"><%= users[i].firstName %> <%= users[i].surname %></a>
                 </div>        
-            <%// } %> 
-        <%// } %> 
+            <% } %> 
+        <% } %> 
     </div>
-</div> -->
+</div>
 
 <%- include("../partials/footer") %> 

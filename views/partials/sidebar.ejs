@@ -11,10 +11,16 @@
         </div>
 
         <ul class="list-unstyled components">
-            <li class="active">
-                <a href="/profile/<%= currentUser._id %>/posts">
+            <li id="home">
+                <a href="/profile/<%= currentUser._id %>/timeline">
                     <i class="fas fa-home"></i>
                     Home
+                </a>
+            </li>
+            <li id="posts">
+                <a href="/profile/<%= currentUser._id %>/posts">
+                    <i class="far fa-star"></i>
+                    Meus Posts
                 </a>
             </li>
             <li>
@@ -44,7 +50,7 @@
                     Editar Perfil
                 </a>
             </li>
-            <li>
+            <li id="profiles">
                 <a href="/profile/find">
                     <i class="fas fa-users"></i>
                     Outros perfis

@@ -6,6 +6,10 @@
 
 <%- include("../partials/sidebar") %>
 
+<script>
+    document.getElementById("posts").classList.add("active")
+</script>
+
 <% if(currentUser && pageUser._id.equals(currentUser._id)){ %> 
     <div class="header py-3">
         <form id="newPost" action="/profile/<%= pageUser.id %>/posts/new" method="POST">
@@ -20,7 +24,7 @@
 <% pageUser.posts.forEach(function(post){ %>
     <div class="row pl-3">
         <div class="col-md-1 col-sm-2 py-3">
-            <img style="width: 50px" src="<%= pageUser.profileIconURL %>">
+            <img style="min-width: 50px; max-width: 80px" src="<%= pageUser.profileIconURL %>">
         </div>
 
         <div class="col-md-11 col-sm-10">
