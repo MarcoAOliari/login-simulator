@@ -2,7 +2,8 @@ const express = require("express"),
       User = require("../models/user"),
       Post = require("../models/post"),
       Comment = require("../models/comment"),
-      middleware = require("../middleware");
+      middleware = require("../middleware"),
+      async = require("async")
 
 let router = express.Router();
 
@@ -30,7 +31,22 @@ router.post("/profile/:id/posts/new", middleware.isLoggedIn,function(req, res){
 
 //MOSTRA POST COM COMENTÁRIOS
 router.get("/profile/:user_id/posts/:post_id", middleware.isLoggedIn, function(req, res){
-    Post.findById(req.params.post_id).populate("comments").exec(function(err, post){
+
+    Post
+    .findById(req.params.post_id)
+    .populate({
+        path: "comments",
+        options: {
+            sort: {
+                updatedAt: -1
+            }
+        },
+        populate: {
+            path: "author.id"
+        }
+    })
+    .exec(function(err, post){
+
         if(err){
             console.log(err)
         } else {
