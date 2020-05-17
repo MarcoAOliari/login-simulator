@@ -1,6 +1,7 @@
 <%- include("../partials/header") %> 
 
 <head>
+    <link href="/stylesheets/user/profile.css" rel="stylesheet" type="text/css">
     <link href="/stylesheets/posts/show.css" rel="stylesheet" type="text/css">
 </head>
 
@@ -21,52 +22,49 @@
         
         <p><%= post.text %></p>
 
-        <form class="like" action="/profile/<%= pageUser %>/posts/<%= post._id %>/like" method="POST">
-            <div class="row">
+        <form id="like" action="/profile/<%= pageUser %>/posts/<%= post._id %>/like" method="POST">
+            <div class="row align-items-center">
                 <button type="submit" class="btn"><i class="far fa-thumbs-up fa-2x"></i></button>
-                <h3 class="my-auto"><%= post.likes.length %></h3>   
+                <h3 class="my-auto"><%= post.likes.length %></h3>     
             </div> 
         </form>
+        <div class="row py-3">
+            <% if(currentUser && post.author.id.equals(currentUser._id)){ %> 
+                <a class="mr-3" href="/profile/<%= pageUser %>/posts/<%= post._id %>/edit"><button class="postar">EDITAR</button></a>
+            
+                <form action="/profile/<%= pageUser %>/posts/<%= post._id %>?_method=DELETE" method="POST">
+                    <button class="postar" type="submit">DELETAR</button>
+                </form>
+            <% } %>  
+        </div>
     </div>
 </div>
 
-
-
-<% if(currentUser && post.author.id === currentUser._id){ %> 
-    <a href="/profile/<%= pageUser %>/posts/<%= post._id %>/edit"><button>EDITAR</button></a>
-
-    <form action="/profile/<%= pageUser %>/posts/<%= post._id %>?_method=DELETE" method="POST">
-        <button type="submit">DELETAR</button>
-    </form>
-<% } %> 
-
 <div class="line"></div>
 
-<form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/new" method="POST">
-    <textarea type="text" name="comment[text]" placeholder="Comente!"></textarea>
-    <button type="submit">Comentar</button>
-</form>
-
-<h1>Comentários</h1>
-
-<div>
-    <% post.comments.forEach(function(comment){ %>
-        <h4><%= comment.text %></h4>
-        <p>-<%= comment.author.username %></p>
-    
-        <% if(currentUser && comment.author.id === currentUser._id){ %> 
-            <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/<%= comment._id %>/edit">
-                <button type="submit">EDITAR</button>
-            </form>
-
-            <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/<%= comment._id %>/delete?_method=DELETE" method="POST">
-                <button type="submit">APAGAR</button>
-            </form>
-        <% } %>
-
-        <div class="line"></div> 
-        
-    <% }) %>   
+<div class="header py-3">
+    <form id="newPost" action="/profile/<%= pageUser._id %>/posts/<%= post._id %>/comments/new" method="POST">
+        <textarea class="pb-3 pl-3" type="text" name="comment[text]" placeholder="Comente!"></textarea>
+        <button class="postar" type="submit">Comentar</button>
+    </form>
 </div>
+
+<h1 class="py-3">Comentários</h1>
+
+<% post.comments.forEach(function(comment){ %>
+    <div class="row pl-3">
+        <div class="col-md-1 col-sm-2 py-3">
+            <img style="min-width: 50px; max-width: 80px" src="<%= comment.author.profileIconURL %>">
+        </div>
+
+        <div class="col-md-11 col-sm-10">
+            <h4><%= comment.author.firstName %> - <%= comment.author.username %> </h4>
+        
+            <p><%= comment.text %></p>
+        </div>
+    </div>
+
+    <div class="line"></div> 
+<% }) %>   
 
 <%- include("../partials/footer") %> 

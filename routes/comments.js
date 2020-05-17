@@ -21,7 +21,7 @@ router.post("/profile/:user_id/posts/:post_id/comments/new", middleware.isLogged
                             console.log(err)
                         } else {
                             comment.author.id = req.user._id
-                            comment.author.username = req.user._id
+                            comment.author.username = req.user.username
                             comment.post = post
                             comment.save()
                             user.comments.push(comment)
