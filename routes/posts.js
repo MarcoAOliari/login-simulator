@@ -34,7 +34,13 @@ router.get("/profile/:user_id/posts/:post_id", middleware.isLoggedIn, function(r
         if(err){
             console.log(err)
         } else {
-            res.render("posts/show", {post: post, pageUser: req.params.user_id})
+            User.findById(req.params.user_id, function(err, user){
+                if(err) {
+                    console.log(err)
+                } else {
+                    res.render("posts/show", {post: post, pageUser: user})
+                }
+            })
         }
     })
 })

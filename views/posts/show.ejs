@@ -6,15 +6,31 @@
 
 <%- include("../partials/sidebar") %>
 
+<style>
+
+</style>
+
 <div class="line"></div>
 
-<p><%= post.text %> </p> 
+<div class="row pl-3">
+    <div class="col-md-1 col-sm-2 py-3">
+        <img style="min-width: 50px; max-width: 80px" src="<%= pageUser.profileIconURL %>">
+    </div>
+    <div class="col-md-11 col-sm-10">
+        <h4><%= pageUser.firstName %> - <%= pageUser.username %> </h4>
+        
+        <p><%= post.text %></p>
 
-<form action="/profile/<%= pageUser %>/posts/<%= post._id %>/like" method="POST">
-    <button type="submit">LIKE</button>
-</form>
+        <form class="like" action="/profile/<%= pageUser %>/posts/<%= post._id %>/like" method="POST">
+            <div class="row">
+                <button type="submit" class="btn"><i class="far fa-thumbs-up fa-2x"></i></button>
+                <h3 class="my-auto"><%= post.likes.length %></h3>   
+            </div> 
+        </form>
+    </div>
+</div>
 
-<h4>Likes: <%= post.likes.length %> </h4>
+
 
 <% if(currentUser && post.author.id === currentUser._id){ %> 
     <a href="/profile/<%= pageUser %>/posts/<%= post._id %>/edit"><button>EDITAR</button></a>
@@ -24,12 +40,12 @@
     </form>
 <% } %> 
 
+<div class="line"></div>
+
 <form action="/profile/<%= pageUser %>/posts/<%= post._id %>/comments/new" method="POST">
     <textarea type="text" name="comment[text]" placeholder="Comente!"></textarea>
     <button type="submit">Comentar</button>
 </form>
-
-<div class="line"></div>
 
 <h1>Comentários</h1>
 
