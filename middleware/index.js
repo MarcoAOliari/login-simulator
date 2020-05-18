@@ -11,7 +11,7 @@ middlewareObj.checkPostOwnership = function(req, res, next){
             if(err){
                 console.log(err)
             } else {
-                if(post.author.id === req.user._id){
+                if(post.author.id.equals(req.user._id)){
                     next()
                 } else {
                     res.redirect("/")
@@ -30,7 +30,7 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
             if(err){
                 console.log(err)
             } else {
-                if(comment.author.id === req.user._id){
+                if(comment.author.id.equals(req.user._id)){
                     next()
                 } else {
                     res.redirect("/")
@@ -45,11 +45,11 @@ middlewareObj.checkCommentOwnership = function(req, res, next){
 //VERIFICA SE A TIMELINE PERTENCE AO USUÁRIO
 middlewareObj.checkTimelineOwnership = function(req, res, next){
     if(req.isAuthenticated()){
-        User.findById(req.params.user_id, function(err, user){
+        User.findById(req.params.id, function(err, user){
             if(err){
                 console.log(err)
             } else {
-                if(req.params.user_id === req.user._id){
+                if(user._id.equals(req.params.id)){
                     next()
                 } else {
                     res.redirect("/")

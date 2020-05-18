@@ -30,7 +30,7 @@
         </form>
         <div class="row py-3">
             <% if(currentUser && post.author.id.equals(currentUser._id)){ %> 
-                <a class="mr-3" href="/profile/<%= pageUser %>/posts/<%= post._id %>/edit"><button class="postar">EDITAR</button></a>
+                <a class="mr-3" href="/profile/<%= pageUser._id %>/posts/<%= post._id %>/edit"><button class="postar">EDITAR</button></a>
             
                 <form action="/profile/<%= pageUser %>/posts/<%= post._id %>?_method=DELETE" method="POST">
                     <button class="postar" type="submit">DELETAR</button>
@@ -61,6 +61,23 @@
             <h4><%= comment.author.id.firstName %> - <%= comment.author.username %> </h4>
         
             <p><%= comment.text %></p>
+
+            <form id="like" action="" method="POST">
+                <div class="row align-items-center">
+                    <button type="submit" class="btn"><i class="far fa-thumbs-up fa-2x"></i></button>
+                    <h3 class="my-auto"><%= comment.likes.length %></h3>     
+                </div> 
+            </form>
+
+            <div class="row py-3">
+                <% if(currentUser && post.author.id.equals(currentUser._id)){ %> 
+                    <a class="mr-3" href="/profile/<%= pageUser._id %>/posts/<%= post._id %>/edit"><button class="postar">EDITAR</button></a>
+                
+                    <form action="/profile/<%= pageUser %>/posts/<%= post._id %>?_method=DELETE" method="POST">
+                        <button class="postar" type="submit">DELETAR</button>
+                    </form>
+                <% } %>  
+            </div>
         </div>
     </div>
 
