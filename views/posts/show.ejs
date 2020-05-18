@@ -22,7 +22,7 @@
         
         <p><%= post.text %></p>
 
-        <form id="like" action="/profile/<%= pageUser %>/posts/<%= post._id %>/like" method="POST">
+        <form id="like" action="/profile/<%= pageUser._id %>/posts/<%= post._id %>/like" method="POST">
             <div class="row align-items-center">
                 <button type="submit" class="btn"><i class="far fa-thumbs-up fa-2x"></i></button>
                 <h3 class="my-auto"><%= post.likes.length %></h3>     

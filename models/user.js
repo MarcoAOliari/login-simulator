@@ -32,6 +32,17 @@ var userSchema = new mongoose.Schema({
             type: mongoose.Schema.Types.ObjectId,
             ref: "Comment"
         }
+    ],
+    notifications: [
+        {
+            username: String,
+            id: Number,
+            //1: comment
+            seen: {
+                type: Boolean,
+                default: false
+            }
+        }
     ]
 });
 
