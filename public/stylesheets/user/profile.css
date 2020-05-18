@@ -251,6 +251,29 @@ a.article, a.article:hover {
     }
 }
 
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown button {
+    border: 0;
+    background-color: transparent;
+}
+
+.dropdown-content {
+    /* display: none; */
+    position: absolute;
+    width: 30%;
+    min-width: 160px;
+    z-index: 1;
+}
+
+.dropdown-content a {
+    display: block;
+    color: #161530
+}
+
 .header {
     background-color: aliceblue;
     border-radius: 5px;
