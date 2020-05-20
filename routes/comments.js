@@ -73,6 +73,34 @@ router.put("/profile/:user_id/posts/:post_id/comments/:comment_id/edit", middlew
     })
 })
 
+//REGISTRA LIKE NO COMENTÁRIO
+router.post("/profile/:user_id/posts/:post_id/comments/:comment_id/like", function(req, res){
+    Comment.findById(req.params.comment_id, function(err, comment){
+        if(err) {
+            console.log(err)
+        } else {
+            User.findById(req.params.user_id, function(err, postAuthor){
+                if(err) {
+                    console.log(err)
+                } else {
+                    let notification = {
+                        username: req.user.username,
+                        id: 3,
+                        postId: req.params.post_id
+                    }
+
+                    postAuthor.notifications.push(notification)
+                    comment.likes.push(req.user)
+                    postAuthor.save()
+                    comment.save()
+
+                    res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+                }
+            })
+        }
+    })
+})
+
 //REMOVE COMENTÁRIO
 router.delete("/profile/:user_id/posts/:post_id/comments/:comment_id/delete", middleware.checkCommentOwnership, function(req, res){
     User.findByIdAndUpdate(req.user._id, {$pull: {comments: req.params.comment_id}}, function(err, user){
