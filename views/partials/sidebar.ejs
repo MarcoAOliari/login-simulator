@@ -85,17 +85,19 @@
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
                                 <% currentUser.notifications.forEach(function(notification){ %> 
-                                    <% if(notification.id === 1){ %>
-                                        <button class="dropdown-item" type="button">
-                                            <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postId %>">
-                                                <%= notification.username %> curtiu seu post!
-                                            </a>
-                                        </button>
-                                    <% } %> 
+                                    <button class="dropdown-item" type="button">
+                                        <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postId %>">
 
-                                    <% if(notification.id === 2){ %>
-                                        <button class="dropdown-item" type="button"><%= notification.username %> comentou em seu post!</button>
-                                    <% } %> 
+                                            <% if(notification.id === 1){ %>
+                                                <%= notification.username %> curtiu seu post!
+                                            <% } %>
+
+                                            <% if(notification.id === 2){ %>
+                                                <%= notification.username %> comentou em seu post!
+                                            <% } %>
+
+                                        </a>
+                                    </button>
                                 <% }) %> 
                             </div>
                         </div>

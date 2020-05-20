@@ -20,15 +20,29 @@ router.post("/profile/:user_id/posts/:post_id/comments/new", middleware.isLogged
                         if(err){
                             console.log(err)
                         } else {
-                            comment.author.id = req.user._id
-                            comment.author.username = req.user.username
-                            comment.post = post
-                            comment.save()
-                            user.comments.push(comment)
-                            user.save()
-                            post.comments.push(comment)
-                            post.save()
-                            res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+                            User.findById(req.params.user_id, function(err, author){
+                                if(err) {
+                                    console.log(err)
+                                } else {
+                                    let notification = {
+                                        username: user.username,
+                                        id: 2,
+                                        postId: req.params.post_id
+                                    }
+        
+                                    author.notifications.push(notification)
+                                    author.save()
+                                    comment.author.id = req.user._id
+                                    comment.author.username = req.user.username
+                                    comment.post = post
+                                    comment.save()
+                                    user.comments.push(comment)
+                                    user.save()
+                                    post.comments.push(comment)
+                                    post.save()
+                                    res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+                                }
+                            })
                         }
                     })
                 }
