@@ -37,7 +37,8 @@ var userSchema = new mongoose.Schema({
         {
             username: String,
             id: Number,
-            //1: comment
+            postId: String,
+            //1: like a post, 2: comment a post
             seen: {
                 type: Boolean,
                 default: false

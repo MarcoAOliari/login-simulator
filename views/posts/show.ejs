@@ -32,7 +32,7 @@
             <% if(currentUser && post.author.id.equals(currentUser._id)){ %> 
                 <a class="mr-3" href="/profile/<%= pageUser._id %>/posts/<%= post._id %>/edit"><button class="postar">EDITAR</button></a>
             
-                <form action="/profile/<%= pageUser %>/posts/<%= post._id %>?_method=DELETE" method="POST">
+                <form action="/profile/<%= pageUser._id %>/posts/<%= post._id %>?_method=DELETE" method="POST">
                     <button class="postar" type="submit">DELETAR</button>
                 </form>
             <% } %>  

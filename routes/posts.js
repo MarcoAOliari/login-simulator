@@ -72,10 +72,24 @@ router.post("/profile/:user_id/posts/:post_id/like", middleware.isLoggedIn, func
                     if(err){
                         console.log(err)
                     } else {
-                        user.likes.push(post)
-                        post.likes.push(user)
-                        user.save()
-                        post.save()
+                        User.findById(req.params.user_id, function(err, author){
+                            if(err) {
+                                console.log(err)
+                            } else {
+                                let notification = {
+                                    username: user.username,
+                                    id: 1,
+                                    postId: req.params.post_id
+                                }
+
+                                author.notifications.push(notification)
+                                user.likes.push(post)
+                                post.likes.push(user)
+                                author.save()
+                                user.save()
+                                post.save()
+                            }
+                        })
                     }
                 })
             }

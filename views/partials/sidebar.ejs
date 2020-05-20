@@ -77,19 +77,6 @@
                     </button>
                 </div>
 
-                <!-- <div style="float: right">
-                    <a href="">
-                        <p style="margin: 0">Notificações</p>
-                    </a>
-                </div>
-
-                <div>
-                    <a href="/logout">
-                        <i class="fas fa-home"></i>
-                        <p style="margin: 0px">Logout</p>
-                    </a>
-                </div> -->
-
                 <div class="row">
                     <div class="col px-3">
                         <div class="btn-group">
@@ -97,10 +84,19 @@
                                 <i style="color: rgb(32, 35, 53)" class="fas fa-bell fa-lg"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <button class="dropdown-item" type="button">Actionsdfgsfgsdfgsfgsdfgsfgsfsdfggsdfg sdfgsfdgsdfg</button>
-                                <button class="dropdown-item" type="button">Action</button>
-                                <button class="dropdown-item" type="button">Action</button>
-                                <button class="dropdown-item" type="button">Action</button>
+                                <% currentUser.notifications.forEach(function(notification){ %> 
+                                    <% if(notification.id === 1){ %>
+                                        <button class="dropdown-item" type="button">
+                                            <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postId %>">
+                                                <%= notification.username %> curtiu seu post!
+                                            </a>
+                                        </button>
+                                    <% } %> 
+
+                                    <% if(notification.id === 2){ %>
+                                        <button class="dropdown-item" type="button"><%= notification.username %> comentou em seu post!</button>
+                                    <% } %> 
+                                <% }) %> 
                             </div>
                         </div>
                     </div>
