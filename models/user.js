@@ -35,14 +35,8 @@ var userSchema = new mongoose.Schema({
     ],
     notifications: [
         {
-            username: String,
-            id: Number,
-            postId: String,
-            //1: like a post, 2: comment a post, 3: like a comment
-            seen: {
-                type: Boolean,
-                default: false
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "Notification"
         }
     ]
 });

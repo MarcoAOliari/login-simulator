@@ -25,19 +25,27 @@ router.post("/login", passport.authenticate("local",
 
 //Pagina inicial de perfil
 router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
-    User.findById(req.params.id).populate({path: "posts", options: {sort: {updatedAt: -1}}}).exec(function(err, user){
-        if(err){
-            console.log(err)
-        } else {
-            User.find({$query: {}, $orderby: {registeredAt: -1}}, function(err, allUsers){
-                if(err){
-                    console.log(err)
-                } else {
-                    res.render("user/profile", {pageUser: user, users: allUsers});
-                }
-            })
-        }
-    })
+    User
+        .findById(req.params.id)
+        .populate({
+            path: "posts",
+            options: {
+                sort: {updatedAt: -1}
+            }
+        })
+        .exec(function(err, user){
+            if(err){
+                console.log(err)
+            } else {
+                User.find().sort({registeredAt: -1}).exec(function(err, allUsers){
+                    if(err){
+                        console.log(err)
+                    } else {
+                        res.render("user/profile", {pageUser: user, users: allUsers});
+                    }
+                })
+            }
+        })
 })
 
 //Timeline
@@ -46,7 +54,7 @@ router.get("/profile/:id/timeline", middleware.checkTimelineOwnership, function(
         if(err){
             console.log(err)
         } else {
-            User.find({$query: {}, $orderby: {registeredAt: -1}}, function(err, allUsers){
+            User.find().sort({registeredAt: -1}).exec(function(err, allUsers){
                 if(err){
                     console.log(err)
                 } else {

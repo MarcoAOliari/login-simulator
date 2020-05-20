@@ -2,6 +2,7 @@ const express = require("express"),
       User = require("../models/user"),
       Post = require("../models/post"),
       Comment = require("../models/comment"),
+      Notification = require("../models/notification"),
       middleware = require("../middleware"),
       async = require("async")
 
@@ -77,17 +78,22 @@ router.post("/profile/:user_id/posts/:post_id/like", middleware.isLoggedIn, func
                                 console.log(err)
                             } else {
                                 let notification = {
-                                    username: user.username,
-                                    id: 1,
-                                    postId: req.params.post_id
+                                    postLiked: post,
+                                    index: 1
                                 }
 
-                                author.notifications.push(notification)
-                                user.likes.push(post)
-                                post.likes.push(user)
-                                author.save()
-                                user.save()
-                                post.save()
+                                Notification.create(notification, function(err, notification){
+                                    if(err) {
+                                        console.log(err)
+                                    } else {
+                                        author.notifications.push(notification)
+                                        user.likes.push(post)
+                                        post.likes.push(user)
+                                        author.save()
+                                        user.save()
+                                        post.save()
+                                    }
+                                })
                             }
                         })
                     }
