@@ -22,7 +22,7 @@ var notificationSchema = new mongoose.Schema({
         default: false
     },
 
-    //1: postLiked
+    //1: postLiked 2:commentPost
     index: Number,
 
     registeredAt: {

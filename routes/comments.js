@@ -2,6 +2,7 @@ const express = require("express"),
       User = require("../models/user"),
       Post = require("../models/post"),
       Comment = require("../models/comment"),
+      Notification = require("../models/notification"),
       middleware = require("../middleware");
 
 let router = express.Router();
@@ -25,22 +26,27 @@ router.post("/profile/:user_id/posts/:post_id/comments/new", middleware.isLogged
                                     console.log(err)
                                 } else {
                                     let notification = {
-                                        username: user.username,
-                                        id: 2,
-                                        postId: req.params.post_id
+                                        commentPost: comment,
+                                        index: 2
                                     }
-        
-                                    author.notifications.push(notification)
-                                    author.save()
-                                    comment.author.id = req.user._id
-                                    comment.author.username = req.user.username
-                                    comment.post = post
-                                    comment.save()
-                                    user.comments.push(comment)
-                                    user.save()
-                                    post.comments.push(comment)
-                                    post.save()
-                                    res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+
+                                    Notification.create(notification, function(err, notification){
+                                        if(err) {
+                                            console.log(err)
+                                        } else {
+                                            author.notifications.push(notification)
+                                            author.save()
+                                            comment.author.id = req.user._id
+                                            comment.author.username = req.user.username
+                                            comment.post = post
+                                            comment.save()
+                                            user.comments.push(comment)
+                                            user.save()
+                                            post.comments.push(comment)
+                                            post.save()
+                                            res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+                                        }
+                                    })
                                 }
                             })
                         }
@@ -84,17 +90,22 @@ router.post("/profile/:user_id/posts/:post_id/comments/:comment_id/like", functi
                     console.log(err)
                 } else {
                     let notification = {
-                        username: req.user.username,
-                        id: 3,
-                        postId: req.params.post_id
+                        commentLiked: comment,
+                        index: 3,
                     }
 
-                    postAuthor.notifications.push(notification)
-                    comment.likes.push(req.user)
-                    postAuthor.save()
-                    comment.save()
+                    Notification.create(notification, function(err, notification){
+                        if(err) {
+                            console.log(err)
+                        } else {
+                            postAuthor.notifications.push(notification)
+                            comment.likes.push(req.user)
+                            postAuthor.save()
+                            comment.save()
 
-                    res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+                            res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+                        }
+                    })
                 }
             })
         }
