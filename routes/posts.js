@@ -77,30 +77,35 @@ router.post("/profile/:user_id/posts/:post_id/like", middleware.isLoggedIn, func
                             if(err) {
                                 console.log(err)
                             } else {
-                                let notification = {
-                                    postLiked: post,
-                                    index: 1,
-                                    username: req.user.username
+
+                                if(!req.user._id.equals(author._id)) {
+
+                                    let notification = {
+                                        postLiked: post,
+                                        index: 1,
+                                        username: req.user.username
+                                    }
+
+                                    Notification.create(notification, function(err, notification){
+                                        if(err) {
+                                            console.log(err)
+                                        } else {
+                                            author.notifications.push(notification)
+                                            author.save()
+                                        }
+                                    })
                                 }
 
-                                Notification.create(notification, function(err, notification){
-                                    if(err) {
-                                        console.log(err)
-                                    } else {
-                                        author.notifications.push(notification)
-                                        user.likes.push(post)
-                                        post.likes.push(user)
-                                        author.save()
-                                        user.save()
-                                        post.save()
-                                    }
-                                })
+                                user.likes.push(post)
+                                post.likes.push(user)
+                                user.save()
+                                post.save()
+                                res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
                             }
                         })
                     }
                 })
             }
-            res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
         }
     })
 })

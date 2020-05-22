@@ -25,29 +25,32 @@ router.post("/profile/:user_id/posts/:post_id/comments/new", middleware.isLogged
                                 if(err) {
                                     console.log(err)
                                 } else {
-                                    let notification = {
-                                        commentPost: comment,
-                                        index: 2,
-                                        username: req.user.username
+                                    if(!author._id.equals(req.user._id)){
+                                        let notification = {
+                                            commentPost: comment,
+                                            index: 2,
+                                            username: req.user.username
+                                        }
+
+                                        Notification.create(notification, function(err, notification){
+                                            if(err) {
+                                                console.log(err)
+                                            } else {
+                                                author.notifications.push(notification)
+                                                author.save()
+                                            }
+                                        })
                                     }
 
-                                    Notification.create(notification, function(err, notification){
-                                        if(err) {
-                                            console.log(err)
-                                        } else {
-                                            author.notifications.push(notification)
-                                            author.save()
-                                            comment.author.id = req.user._id
-                                            comment.author.username = req.user.username
-                                            comment.post = post
-                                            comment.save()
-                                            user.comments.push(comment)
-                                            user.save()
-                                            post.comments.push(comment)
-                                            post.save()
-                                            res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
-                                        }
-                                    })
+                                    comment.author.id = req.user._id
+                                    comment.author.username = req.user.username
+                                    comment.post = post
+                                    comment.save()
+                                    user.comments.push(comment)
+                                    user.save()
+                                    post.comments.push(comment)
+                                    post.save()
+                                    res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
                                 }
                             })
                         }
@@ -90,24 +93,26 @@ router.post("/profile/:user_id/posts/:post_id/comments/:comment_id/like", functi
                 if(err) {
                     console.log(err)
                 } else {
-                    let notification = {
-                        commentLiked: comment,
-                        index: 3,
-                        username: req.user.username,
-                    }
-
-                    Notification.create(notification, function(err, notification){
-                        if(err) {
-                            console.log(err)
-                        } else {
-                            commentAuthor.notifications.push(notification)
-                            comment.likes.push(req.user)
-                            commentAuthor.save()
-                            comment.save()
-
-                            res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
+                    if(!comment.author.id.equals(req.user._id)) {
+                        let notification = {
+                            commentLiked: comment,
+                            index: 3,
+                            username: req.user.username,
                         }
-                    })
+
+                        Notification.create(notification, function(err, notification){
+                            if(err) {
+                                console.log(err)
+                            } else {
+                                commentAuthor.notifications.push(notification)
+                                commentAuthor.save()
+                            }
+                        })
+                    }
+                    comment.likes.push(req.user)
+                    comment.save()
+
+                    res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
                 }
             })
         }
