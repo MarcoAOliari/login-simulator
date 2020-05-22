@@ -88,12 +88,22 @@
                                     <button class="dropdown-item" type="button">
                                         <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postId %>">
 
-                                            <% if(notification.id === 1){ %>
-                                                <%= notification.username %> curtiu seu post!
+                                            <% if(notification.index === 1){ %>
+                                                <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postLiked %>">
+                                                    <%= notification.username %> curtiu seu post!
+                                                </a> 
                                             <% } %>
 
-                                            <% if(notification.id === 2){ %>
-                                                <%= notification.username %> comentou em seu post!
+                                            <% if(notification.index === 2){ %>
+                                                <a href="/profile/<%= currentUser._id %>/posts/<%= notification.commentPost %>">
+                                                    <%= notification.username %> comentou em seu post!
+                                                </a>
+                                            <% } %>
+
+                                            <% if(notification.index === 3){ %>
+                                                <a href="/profile/<%= currentUser._id %>/posts/<%= notification.commentLiked %>">
+                                                    <%= notification.username %> curtiu seu comentário!
+                                                </a>
                                             <% } %>
 
                                         </a>

@@ -27,7 +27,8 @@ router.post("/profile/:user_id/posts/:post_id/comments/new", middleware.isLogged
                                 } else {
                                     let notification = {
                                         commentPost: comment,
-                                        index: 2
+                                        index: 2,
+                                        username: req.user.username
                                     }
 
                                     Notification.create(notification, function(err, notification){
@@ -92,6 +93,7 @@ router.post("/profile/:user_id/posts/:post_id/comments/:comment_id/like", functi
                     let notification = {
                         commentLiked: comment,
                         index: 3,
+                        username: req.user.username,
                     }
 
                     Notification.create(notification, function(err, notification){

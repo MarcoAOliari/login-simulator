@@ -79,7 +79,8 @@ router.post("/profile/:user_id/posts/:post_id/like", middleware.isLoggedIn, func
                             } else {
                                 let notification = {
                                     postLiked: post,
-                                    index: 1
+                                    index: 1,
+                                    username: req.user.username
                                 }
 
                                 Notification.create(notification, function(err, notification){

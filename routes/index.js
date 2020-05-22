@@ -33,6 +33,7 @@ router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
                 sort: {updatedAt: -1}
             }
         })
+        .populate("notifications")
         .exec(function(err, user){
             if(err){
                 console.log(err)
@@ -50,19 +51,22 @@ router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
 
 //Timeline
 router.get("/profile/:id/timeline", middleware.checkTimelineOwnership, function(req, res){
-    Post.find().sort({updatedAt: -1}).populate("author.id").exec(function(err, allPosts){
-        if(err){
-            console.log(err)
-        } else {
-            User.find().sort({registeredAt: -1}).exec(function(err, allUsers){
-                if(err){
-                    console.log(err)
-                } else {
-                    res.render("user/timeline", {posts: allPosts, users: allUsers})
-                }
-            })
-        }
-    })
+    Post.find()
+        .sort({updatedAt: -1})
+        .populate("author.id")
+        .exec(function(err, allPosts){
+            if(err){
+                console.log(err)
+            } else {
+                User.find().sort({registeredAt: -1}).exec(function(err, allUsers){
+                    if(err){
+                        console.log(err)
+                    } else {
+                        res.render("user/timeline", {posts: allPosts, users: allUsers})
+                    }
+                })
+            }
+        })
 })
 
 /*

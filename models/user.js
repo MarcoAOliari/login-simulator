@@ -1,4 +1,5 @@
 const mongoose = require("mongoose"),
+      Notification = require("../models/notification").schema,
       passportLocalMongoose = require("passport-local-mongoose");
 
 var userSchema = new mongoose.Schema({
@@ -33,12 +34,7 @@ var userSchema = new mongoose.Schema({
             ref: "Comment"
         }
     ],
-    notifications: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "Notification"
-        }
-    ]
+    notifications: [Notification]
 });
 
 userSchema.plugin(passportLocalMongoose);

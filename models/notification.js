@@ -6,12 +6,12 @@ var notificationSchema = new mongoose.Schema({
         ref: "Post",
         default: null
     },
-    commentLiked: {
+    commentPost: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment",
         default: null
     },
-    commentPost: {
+    commentLiked: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Comment",
         default: null
@@ -22,8 +22,9 @@ var notificationSchema = new mongoose.Schema({
         default: false
     },
 
-    //1: postLiked 2:commentPost
+    //1: postLiked 2:commentPost 3:commentLiked
     index: Number,
+    username: String,
 
     registeredAt: {
         type: Date,
