@@ -86,7 +86,7 @@ router.post("/profile/:user_id/posts/:post_id/comments/:comment_id/like", functi
         if(err) {
             console.log(err)
         } else {
-            User.findById(req.params.user_id, function(err, postAuthor){
+            User.findById(comment.author.id, function(err, commentAuthor){
                 if(err) {
                     console.log(err)
                 } else {
@@ -100,9 +100,9 @@ router.post("/profile/:user_id/posts/:post_id/comments/:comment_id/like", functi
                         if(err) {
                             console.log(err)
                         } else {
-                            postAuthor.notifications.push(notification)
+                            commentAuthor.notifications.push(notification)
                             comment.likes.push(req.user)
-                            postAuthor.save()
+                            commentAuthor.save()
                             comment.save()
 
                             res.redirect("/profile/" + req.params.user_id + "/posts/" + req.params.post_id)
