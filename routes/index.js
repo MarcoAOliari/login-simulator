@@ -1,6 +1,7 @@
 const express = require("express"),
       User = require("../models/user"),
       Post = require("../models/post"),
+      Notification = require("../models/notification"), 
       passport = require("passport"),
       middleware = require("../middleware");
 
@@ -151,3 +152,18 @@ router.get("/logout", middleware.isLoggedIn, function(req, res){
 })
 
 module.exports = router;
+
+/*
+NOTIFICATIONS
+*/
+
+function resetAllNotifications () {
+    User.updateMany({}, {$set: {"notifications": []}}, function(err, users) {
+        if(err) {
+            console.log(err)
+        } else {
+            console.log(users)
+        }
+    })
+}
+
