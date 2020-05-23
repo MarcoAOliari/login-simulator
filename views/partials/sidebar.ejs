@@ -84,31 +84,37 @@
                                 <i style="color: rgb(32, 35, 53)" class="fas fa-bell fa-lg"></i>
                             </button>
                             <div class="dropdown-menu dropdown-menu-right">
-                                <% currentUser.notifications.forEach(function(notification){ %> 
+                                <% if(currentUser.notifications.length){ %> 
+                                    <% currentUser.notifications.forEach(function(notification){ %> 
+                                        <button class="dropdown-item" type="button">
+                                            <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postId %>">
+
+                                                <% if(notification.index === 1){ %>
+                                                    <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postLiked %>">
+                                                        <%= notification.username %> curtiu seu post!
+                                                    </a> 
+                                                <% } %>
+
+                                                <% if(notification.index === 2){ %>
+                                                    <a href="/profile/<%= currentUser._id %>/posts/<%= notification.commentPost %>">
+                                                        <%= notification.username %> comentou em seu post!
+                                                    </a>
+                                                <% } %>
+
+                                                <% if(notification.index === 3){ %>
+                                                    <a href="/profile/<%= currentUser._id %>/posts/<%= notification.commentLiked %>">
+                                                        <%= notification.username %> curtiu seu comentário!
+                                                    </a>
+                                                <% } %>
+
+                                            </a>
+                                        </button>
+                                    <% }) %> 
+                                <% } else { %>
                                     <button class="dropdown-item" type="button">
-                                        <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postId %>">
-
-                                            <% if(notification.index === 1){ %>
-                                                <a href="/profile/<%= currentUser._id %>/posts/<%= notification.postLiked %>">
-                                                    <%= notification.username %> curtiu seu post!
-                                                </a> 
-                                            <% } %>
-
-                                            <% if(notification.index === 2){ %>
-                                                <a href="/profile/<%= currentUser._id %>/posts/<%= notification.commentPost %>">
-                                                    <%= notification.username %> comentou em seu post!
-                                                </a>
-                                            <% } %>
-
-                                            <% if(notification.index === 3){ %>
-                                                <a href="/profile/<%= currentUser._id %>/posts/<%= notification.commentLiked %>">
-                                                    <%= notification.username %> curtiu seu comentário!
-                                                </a>
-                                            <% } %>
-
-                                        </a>
+                                        Sem notificações :)
                                     </button>
-                                <% }) %> 
+                                <% } %> 
                             </div>
                         </div>
                     </div>
