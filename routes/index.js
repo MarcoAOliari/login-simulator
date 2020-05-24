@@ -54,6 +54,7 @@ router.get("/profile/:id/posts", middleware.isLoggedIn, function(req, res){
 router.get("/profile/:id/timeline", middleware.checkTimelineOwnership, function(req, res){
     Post.find()
         .sort({updatedAt: -1})
+        .sort({'notifications.registeredAt': -1})
         .populate("author.id")
         .exec(function(err, allPosts){
             if(err){
